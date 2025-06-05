@@ -8,18 +8,18 @@
 
         <div style="display: flex; align-items: center; margin-bottom: 15px;">
             <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 32px; height: 32px; margin-right: 10px;">
-            <span style="font-size: 1.1rem;">carrito de compras</span>
+            <span style="font-size: 1.1rem;"></span>
         </div>
 
-        <p style="margin-bottom: 20px;">
+        <h3 style="margin-bottom: 20px;">
             Gestiona tus pagos, suplementos, entrenadores y clases desde un solo lugar.
-        </p>
+        </h3>
 
         <p style="font-size: 0.9rem; color: #ccc;">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br><br>
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>
-            xxxxxxxxxxxxxxx
+            En GymAlpha nos enfocamos en ofrecerte una experiencia completa para tu bienestar físico.<br><br>
+            Desde la gestión de tus membresías hasta el acceso a suplementos de calidad y clases especializadas, todo está al alcance de un clic.<br><br>
+            Contamos con entrenadores certificados, rutinas personalizadas y una plataforma intuitiva para que alcances tus objetivos de manera eficaz y segura.<br>
+            
         </p>
     </div>
 
