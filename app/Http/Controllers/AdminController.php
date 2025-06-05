@@ -11,5 +11,25 @@ class AdminController extends Controller
     {
         return view('admin.home');
     }
+    //creacion funcion membresia
+    public function membresia()
+    {
+        return view('admin.membresia');
+    }
+    //creacion funcion suplementos
+    public function suplementos()
+    {
+        return view('admin.suplementos');
+    }
+    //creacion funcion spinnning
+    public function spinning()
+    {
+        return view('admin.spinning');
+    }
+    //creacion funcion configuracion
+    public function configuracion()
+    {
+        return view('admin.configuracion');
+    }
 }
 

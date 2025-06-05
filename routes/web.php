@@ -20,6 +20,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(function () {
     Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'home'])->name('admin.home');
+    Route::get('/admin/membresia', [App\Http\Controllers\AdminController::class, 'membresia'])->name('admin.membresia');
+    Route::get('/admin/suplementos', [App\Http\Controllers\AdminController::class, 'suplementos'])->name('admin.suplementos');
+    Route::get('/admin/spinning', [App\Http\Controllers\AdminController::class, 'spinning'])->name('admin.spinning');
+    Route::get('/admin/configuracion', [App\Http\Controllers\AdminController::class, 'configuracion'])->name('admin.configuracion');
 });
 
 require __DIR__.'/auth.php';
