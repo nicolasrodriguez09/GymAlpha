@@ -27,10 +27,13 @@
             margin-right: 20px;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
-        .navbar a:hover {
-            text-decoration: underline;
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00ff88;
+            text-decoration: none;
         }
 
         .main-content {
@@ -55,12 +58,19 @@
 <body>
 
     <div class="navbar">
-        <div class="navbar-left">
-            <a href="#">🏋️ Membresía</a>
-            <a href="#">Suplementos</a>
-            <a href="#">Spinning</a>
-            <a href="#">Configuración</a>
+        <div class="navbar-left" style="display: flex; align-items: center;">
+            <!-- Ícono mancuerna como acceso a home -->
+            <a href="{{ route('admin.home') }}" style="margin-right: 30px;" title="Inicio">
+                <img src="{{ asset('images/mancuerna.png') }}" alt="Inicio" style="width: 50px; height: 50px;">
+            </a>
+
+            <!-- Navegación -->
+            <a href="#" class="{{ request()->is('admin/membresia') ? 'active' : '' }}">Membresía</a>
+            <a href="#" class="{{ request()->is('admin/suplementos') ? 'active' : '' }}">Suplementos</a>
+            <a href="#" class="{{ request()->is('admin/spinning') ? 'active' : '' }}">Spinning</a>
+            <a href="#" class="{{ request()->is('admin/configuracion') ? 'active' : '' }}">Configuración</a>
         </div>
+
         <div class="navbar-right">
             <span>Administrador 🟢</span>
         </div>
