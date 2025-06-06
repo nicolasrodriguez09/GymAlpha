@@ -76,7 +76,7 @@ class AdminController extends Controller
 
 
 
-    //creacion funcion spinnning
+    ////-------creacion funciones spinning y derivados-------
 
 
 
@@ -84,6 +84,34 @@ class AdminController extends Controller
     {
         return view('admin.spinning.index');
     }
+
+    public function agregarClase()
+    {
+        return view('admin.spinning.agregar');
+    }
+
+    public function eliminarClase()
+    {
+        return view('admin.spinning.eliminar');
+    }
+
+    public function modificarClase()
+    {
+        return view('admin.spinning.modificar');
+    }
+
+    public function consultarClase()
+    {
+        return view('admin.spinning.consultar');
+    }
+
+
+
+
+
+
+
+
     //creacion funcion configuracion
     public function configuracion()
     {

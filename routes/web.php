@@ -38,9 +38,16 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/suplementos/modificar', [App\Http\Controllers\AdminController::class, 'modificarSuplemento'])->name('admin.suplementos.modificar');
     Route::get('/admin/suplementos/consultar', [App\Http\Controllers\AdminController::class, 'consultarSuplemento'])->name('admin.suplementos.consultar');
 
-
+    //todas las rutas de spinning
 
     Route::get('/admin/spinning', [App\Http\Controllers\AdminController::class, 'spinning'])->name('admin.spinning');
+    Route::get('/admin/spinning/agregar', [App\Http\Controllers\AdminController::class, 'agregarClase'])->name('admin.spinning.agregar');
+    Route::get('/admin/spinning/eliminar', [App\Http\Controllers\AdminController::class, 'eliminarClase'])->name('admin.spinning.eliminar');
+    Route::get('/admin/spinning/modificar', [App\Http\Controllers\AdminController::class, 'modificarClase'])->name('admin.spinning.modificar');
+    Route::get('/admin/spinning/consultar', [App\Http\Controllers\AdminController::class, 'consultarClase'])->name('admin.spinning.consultar');
+
+
+
     Route::get('/admin/configuracion', [App\Http\Controllers\AdminController::class, 'configuracion'])->name('admin.configuracion');
 });
 
