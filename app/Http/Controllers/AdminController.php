@@ -14,7 +14,7 @@ class AdminController extends Controller
     //creacion funcion membresia
     public function membresia()
     {
-        return view('admin.membresia');
+        return view('admin.membresia.index');
     }
     //creacion funcion suplementos
     public function suplementos()
