@@ -9,17 +9,17 @@
 
             @php
                 $acciones = [
-                    ['label' => 'Agregar membresía', 'icon' => 'add.png'],
-                    ['label' => 'Eliminar membresía', 'icon' => 'delete.png'],
-                    ['label' => 'Modificar membresía', 'icon' => 'edit.png'],
-                    ['label' => 'Consultar membresía', 'icon' => 'search.png'],
+                    ['label' => 'Agregar membresía', 'icon' => 'add.png', 'route' => route('admin.membresia.agregar')],
+                    ['label' => 'Eliminar membresía', 'icon' => 'delete.png', 'route' => route('admin.membresia.eliminar')],
+                    ['label' => 'Modificar membresía', 'icon' => 'edit.png', 'route' => route('admin.membresia.modificar')],
+                    ['label' => 'Consultar membresía', 'icon' => 'search.png', 'route' => route('admin.membresia.consultar')],
                 ];
             @endphp
 
             @foreach ($acciones as $accion)
             <div style="display: flex; align-items: center;">
                 <img src="{{ asset('images/' . $accion['icon']) }}" alt="icono" style="width: 40px; height: 40px; margin-right: 15px;">
-                <button style="
+                <a href="{{ $accion['route'] }}" style="
                     background-color: #007BFF;
                     color: white;
                     border: none;
@@ -32,7 +32,7 @@
                 onmouseover="this.style.backgroundColor='#00ff88'"
                 onmouseout="this.style.backgroundColor='#007BFF'">
                     {{ $accion['label'] }}
-                </button>
+                </a>
             </div>
             @endforeach
         </div>
