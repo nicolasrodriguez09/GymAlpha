@@ -9,10 +9,10 @@
 
             @php
                 $acciones = [
-                    ['label' => 'Agregar suplemento', 'icon' => 'add.png', 'route' => route('admin.membresia.agregar')],
-                    ['label' => 'Eliminar suplemento', 'icon' => 'delete.png', 'route' => route('admin.membresia.eliminar')],
-                    ['label' => 'Modificar suplemento', 'icon' => 'edit.png', 'route' => route('admin.membresia.modificar')],
-                    ['label' => 'Consultar suplemento', 'icon' => 'search.png', 'route' => route('admin.membresia.consultar')],
+                    ['label' => 'Agregar suplemento', 'icon' => 'add.png', 'route' => route('admin.suplementos.agregar')],
+                    ['label' => 'Eliminar suplemento', 'icon' => 'delete.png', 'route' => route('admin.suplementos.eliminar')],
+                    ['label' => 'Modificar suplemento', 'icon' => 'edit.png', 'route' => route('admin.suplementos.modificar')],
+                    ['label' => 'Consultar suplemento', 'icon' => 'search.png', 'route' => route('admin.suplementos.consultar')],
                 ];
             @endphp
 

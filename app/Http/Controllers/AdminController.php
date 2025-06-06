@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    //
+    
     public function home()
     {
         return view('admin.home');
     }
 
-    //creacion funciones membresia y derivados
+
+
+    //-------creacion funciones membresia y derivados-------
+
+
 
     public function membresia()
     {
@@ -41,13 +45,41 @@ class AdminController extends Controller
 
 
 
+    ////-------creacion funciones suplementos y derivados-------
 
-    //creacion funcion suplementos
+
+
     public function suplementos()
     {
         return view('admin.suplementos.index');
     }
+
+    public function agregarSuplemento()
+    {
+        return view('admin.suplementos.agregar');
+    }
+
+    public function eliminarSuplemento()
+    {
+        return view('admin.suplementos.eliminar');
+    }
+
+    public function modificarSuplemento()
+    {
+        return view('admin.suplementos.modificar');
+    }
+
+    public function consultarSuplemento()
+    {
+        return view('admin.suplementos.consultar');
+    }
+
+
+
     //creacion funcion spinnning
+
+
+
     public function spinning()
     {
         return view('admin.spinning.index');
