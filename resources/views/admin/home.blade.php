@@ -24,10 +24,8 @@
     </div>
 
     <!-- Columna derecha -->
-    <div style="width: 460px;">
-        
-        <img src="{{ asset('images/suplemento.png') }}" alt="Suplemento" style="width: 70%; border-radius: 10px; margin-bottom: 10px;">
-            
+    <div style="flex: 1;">
+        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 </div>
 @endsection
