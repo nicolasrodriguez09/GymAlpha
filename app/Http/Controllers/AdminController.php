@@ -145,6 +145,14 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.categoriaProducto.index');
     }
+    public function agregarCategoria ()
+    {
+        return view('admin.configuracion.categoriaProducto.agregarCategoria');
+    }
+    public function eliminarCategoria ()
+    {
+        return view ('admin.configuracion.categoriaProducto.eliminarCategoria');
+    }
 
 
     //------------forma de pago  y derivados ----------------

@@ -60,8 +60,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
 
 
 
-
+    //configuracion categoria de producto
     Route::get('/admin/configuracion/categoriaProducto', [App\Http\Controllers\AdminController::class, 'categoriaProducto'])->name('admin.configuracion.categoriaProducto');
+    Route::get('/admin/configuracion/categoriaProducto/agregarCategoria', [App\Http\Controllers\AdminController::class, 'agregarCategoria'])->name('admin.configuracion.agregarCategoria');
+    Route::get('/admin/configuracion/categoriaProducto/eliminarCategoria',[App\Http\Controllers\AdminController::class, 'eliminarCategoria'])->name('admin.configuracion.eliminarCategoria');
+
+
     Route::get('/admin/configuracion/formaPago', [App\Http\Controllers\AdminController::class, 'formaPago'])->name('admin.configuracion.formaPago');
     Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
     Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');
