@@ -193,6 +193,18 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.inventario.index');
     }
+    public function ingresarCantidad ()
+    {
+        return view('admin.configuracion.inventario.ingresarCantidad');
+    }
+    public function registroVentas ()
+    {
+        return view('admin.configuracion.inventario.registroVentas');
+    }
+    public function consultarStock ()
+    {
+        return view('admin.configuracion.inventario.consultarStock');
+    }
 
 
     //------------tipo de documento y derivados ----------------

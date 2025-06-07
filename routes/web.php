@@ -74,7 +74,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/formaPago/modificarFormaPago', [App\Http\Controllers\AdminController::class, 'modificarformaPago'])->name('admin.configuracion.modificarFormaPago');
     Route::get('/admin/configuracion/formaPago/consultarFormaPago', [App\Http\Controllers\AdminController::class, 'consultarformaPago'])->name('admin.configuracion.consultarFormaPago');
 
+    //configuracion inventario
     Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
+    Route::get('/admin/configuracion/inventario/ingresarCantidad', [App\Http\Controllers\AdminController::class, 'ingresarCantidad'])->name('admin.configuracion.ingresarCantidad');
+    Route::get('/admin/configuracion/inventario/registroVentas', [App\Http\Controllers\AdminController::class, 'registroVentas'])->name('admin.configuracion.registroVentas');
+    Route::get('/admin/configuracion/inventario/consultarStock', [App\Http\Controllers\AdminController::class, 'consultarStock'])->name('admin.configuracion.consultarStock');
+
     Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');
     Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');
 });
