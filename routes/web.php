@@ -80,7 +80,13 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/inventario/registroVentas', [App\Http\Controllers\AdminController::class, 'registroVentas'])->name('admin.configuracion.registroVentas');
     Route::get('/admin/configuracion/inventario/consultarStock', [App\Http\Controllers\AdminController::class, 'consultarStock'])->name('admin.configuracion.consultarStock');
 
+    //configuracion tipo de documento
     Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');
+    Route::get('/admin/configuracion/tipoDocumento/agregarTipo', [App\Http\Controllers\AdminController::class, 'agregarTipo'])->name('admin.configuracion.agregarTipo');
+    Route::get('/admin/configuracion/tipoDocumento/eliminarTipo', [App\Http\Controllers\AdminController::class, 'eliminarTipo'])->name('admin.configuracion.eliminarTipo');
+    Route::get('/admin/configuracion/tipoDocumento/modificarTipo', [App\Http\Controllers\AdminController::class, 'modificarTipo'])->name('admin.configuracion.modificarTipo');
+    Route::get('/admin/configuracion/tipoDocumento/consultarTipo', [App\Http\Controllers\AdminController::class, 'consultarTipo'])->name('admin.configuracion.consultarTipo');
+
     Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');
 });
 

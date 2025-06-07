@@ -212,6 +212,22 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.tipoDocumento.index');
     }
+    public function agregarTipo ()
+    {
+        return view('admin.configuracion.tipoDocumento.agregarTipo');
+    }
+    public function eliminarTipo ()
+    {
+        return view('admin.configuracion.tipoDocumento.eliminarTipo');
+    }
+    public function consultarTipo ()
+    {
+        return view('admin.configuracion.tipoDocumento.consultarTipo');
+    }
+    public function modificarTipo ()
+    {
+        return view('admin.configuracion.tipoDocumento.modificarTipo');
+    }
 
 
     //------------proveedor y derivados ----------------
