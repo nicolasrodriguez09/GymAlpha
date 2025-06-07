@@ -21,7 +21,7 @@
             @foreach ($acciones as $accion)
             <div style="display: flex; align-items: center;">
                 <img src="{{ asset('images/' . $accion['icon']) }}" alt="icono" style="width: 40px; height: 40px; margin-right: 15px;">
-                <a  style="
+                <a href="{{ $accion['route'] }}" style="
                     background-color: #007BFF;
                     color: white;
                     border: none;

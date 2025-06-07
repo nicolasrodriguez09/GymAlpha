@@ -2,5 +2,5 @@
 
 @section('content')
 
-<h1>hola</h1>
+<h1>hola forma de pago</h1>
 @endsection

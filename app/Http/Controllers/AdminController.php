@@ -117,5 +117,54 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.index');
     }
+
+    //---------- sub configuracion --------------
+
+    //------------permisos y derivados ----------------
+    public function permisos()
+    {
+        return view('admin.configuracion.permisos.index');
+    }
+
+
+
+    //------------categoria de productos y derivados ----------------
+    public function categoriaProducto ()
+    {
+        return view('admin.configuracion.categoriaProducto.index');
+    }
+
+
+    //------------forma de pago  y derivados ----------------
+    public function formaPago ()
+    {
+        return view('admin.configuracion.formaPago.index');
+    }
+
+
+    //------------inventario y derivados ----------------
+    public function inventario ()
+    {
+        return view('admin.configuracion.inventario.index');
+    }
+
+
+    //------------tipo de documento y derivados ----------------
+    public function tipoDocumento ()
+    {
+        return view('admin.configuracion.tipoDocumento.index');
+    }
+
+
+    //------------proveedor y derivados ----------------
+    public function proveedor()
+    {
+        return view('admin.configuracion.proveedor.index');
+    }
+
+
+
+
+
 }
 
