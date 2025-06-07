@@ -25,6 +25,8 @@
                     border: none;
                     padding: 12px 24px;
                     font-size: 1rem;
+                    text-align: center;
+                    width: 170px;
                     border-radius: 6px;
                     cursor: pointer;
                     transition: background-color 0.3s ease;

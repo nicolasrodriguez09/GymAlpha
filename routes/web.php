@@ -47,8 +47,18 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/spinning/consultar', [App\Http\Controllers\AdminController::class, 'consultarClase'])->name('admin.spinning.consultar');
 
 
+    //configuracion y primera rama derivada
+
 
     Route::get('/admin/configuracion', [App\Http\Controllers\AdminController::class, 'configuracion'])->name('admin.configuracion');
+
+    //configuracion permisos 
+    Route::get('/admin/configuracion/permisos', [App\Http\Controllers\AdminController::class, 'permisos'])->name('admin.configuracion.permisos');
+    Route::get('/admin/configuracion/categoriaProducto', [App\Http\Controllers\AdminController::class, 'categoriaProducto'])->name('admin.configuracion.categoriaProducto');
+    Route::get('/admin/configuracion/formaPago', [App\Http\Controllers\AdminController::class, 'formaPago'])->name('admin.configuracion.formaPago');
+    Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
+    Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');
+    Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');
 });
 
 require __DIR__.'/auth.php';
