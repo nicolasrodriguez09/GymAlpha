@@ -125,6 +125,18 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.permisos.index');
     }
+    public function darPermiso()
+    {
+        return view('admin.configuracion.permisos.darPermiso');
+    }
+    public function quitarPermiso()
+    {
+        return view('admin.configuracion.permisos.quitarPermiso');
+    }
+    public function consultarPermiso()
+    {
+        return view('admin.configuracion.permisos.consultarPermiso');
+    }
 
 
 
