@@ -113,8 +113,8 @@
                 $acciones = [
                     ['label' => 'Agregar categoria', 'icon' => 'add.png', 'route' => route('admin.configuracion.agregarCategoria')],
                     ['label' => 'Eliminar categoria', 'icon' => 'delete.png', 'route' => route('admin.configuracion.eliminarCategoria')],
-                    ['label' => 'Modificar categoria', 'icon' => 'edit.png', 'route' => route('admin.configuracion.consultarPermiso')],
-                    ['label' => 'Consultar categoria', 'icon' => 'edit.png', 'route' => route('admin.configuracion.consultarPermiso')],
+                    ['label' => 'Modificar categoria', 'icon' => 'edit.png', 'route' => route('admin.configuracion.modificarCategoria')],
+                    ['label' => 'Consultar categoria', 'icon' => 'edit.png', 'route' => route('admin.configuracion.consultarCategoria')],
                 ];
             @endphp
 

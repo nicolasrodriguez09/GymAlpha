@@ -153,6 +153,14 @@ class AdminController extends Controller
     {
         return view ('admin.configuracion.categoriaProducto.eliminarCategoria');
     }
+    public function modificarCategoria ()
+    {
+        return view ('admin.configuracion.categoriaProducto.modificarCategoria');
+    }
+    public function consultarCategoria ()
+    {
+        return view ('admin.configuracion.categoriaProducto.consultarCategoria');
+    }
 
 
     //------------forma de pago  y derivados ----------------
@@ -160,6 +168,24 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.formaPago.index');
     }
+    public function agregarformaPago ()
+    {
+        return view('admin.configuracion.formaPago.agregarFormaPago');
+    }
+    public function eliminarformaPago ()
+    {
+        return view('admin.configuracion.formaPago.eliminarFormaPago');
+    }
+    public function modificarformaPago ()
+    {
+        return view('admin.configuracion.formaPago.modificarFormaPago');
+    }
+    public function consultarformaPago ()
+    {
+        return view('admin.configuracion.formaPago.consultarFormaPago');
+    }
+
+    
 
 
     //------------inventario y derivados ----------------

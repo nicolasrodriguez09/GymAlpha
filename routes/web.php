@@ -64,9 +64,16 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/categoriaProducto', [App\Http\Controllers\AdminController::class, 'categoriaProducto'])->name('admin.configuracion.categoriaProducto');
     Route::get('/admin/configuracion/categoriaProducto/agregarCategoria', [App\Http\Controllers\AdminController::class, 'agregarCategoria'])->name('admin.configuracion.agregarCategoria');
     Route::get('/admin/configuracion/categoriaProducto/eliminarCategoria',[App\Http\Controllers\AdminController::class, 'eliminarCategoria'])->name('admin.configuracion.eliminarCategoria');
+    Route::get('/admin/configuracion/categoriaProducto/mofificarCategoria', [App\Http\Controllers\AdminController::class, 'modificarCategoria'])->name('admin.configuracion.modificarCategoria');
+    Route::get('/admin/configuracion/categoriaProducto/consultarCategoria', [App\Http\Controllers\AdminController::class, 'consultarCategoria'])->name('admin.configuracion.consultarCategoria');
 
-
+    //configuracion formas de pago
     Route::get('/admin/configuracion/formaPago', [App\Http\Controllers\AdminController::class, 'formaPago'])->name('admin.configuracion.formaPago');
+    Route::get('/admin/configuracion/formaPago/agregarFormaPago', [App\Http\Controllers\AdminController::class, 'agregarformaPago'])->name('admin.configuracion.agregarFormaPago');
+    Route::get('/admin/configuracion/formaPago/eliminarFormaPago', [App\Http\Controllers\AdminController::class, 'eliminarformaPago'])->name('admin.configuracion.eliminarFormaPago');
+    Route::get('/admin/configuracion/formaPago/modificarFormaPago', [App\Http\Controllers\AdminController::class, 'modificarformaPago'])->name('admin.configuracion.modificarFormaPago');
+    Route::get('/admin/configuracion/formaPago/consultarFormaPago', [App\Http\Controllers\AdminController::class, 'consultarformaPago'])->name('admin.configuracion.consultarFormaPago');
+
     Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
     Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');
     Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');
