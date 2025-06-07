@@ -87,7 +87,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/tipoDocumento/modificarTipo', [App\Http\Controllers\AdminController::class, 'modificarTipo'])->name('admin.configuracion.modificarTipo');
     Route::get('/admin/configuracion/tipoDocumento/consultarTipo', [App\Http\Controllers\AdminController::class, 'consultarTipo'])->name('admin.configuracion.consultarTipo');
 
+    //configuracion proveedor
     Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');
+    Route::get('/admin/configuracion/proveedor/agregarProveedor', [App\Http\Controllers\AdminController::class, 'agregarProveedor'])->name('admin.configuracion.agregarProveedor');
+    Route::get('/admin/configuracion/proveedor/eliminarProveedor', [App\Http\Controllers\AdminController::class, 'eliminarProveedor'])->name('admin.configuracion.eliminarProveedor');
+    Route::get('/admin/configuracion/proveedor/modificarProveedor', [App\Http\Controllers\AdminController::class, 'modificarProveedor'])->name('admin.configuracion.modificarProveedor');
+    Route::get('/admin/configuracion/proveedor/consultarProveedor', [App\Http\Controllers\AdminController::class, 'consultarProveedor'])->name('admin.configuracion.consultarProveedor');
 });
 
 require __DIR__.'/auth.php';

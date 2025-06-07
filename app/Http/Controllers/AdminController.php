@@ -235,6 +235,23 @@ class AdminController extends Controller
     {
         return view('admin.configuracion.proveedor.index');
     }
+    public function agregarProveedor()
+    {
+        return view('admin.configuracion.proveedor.agregarProveedor');
+    }
+    public function eliminarProveedor()
+    {
+        return view('admin.configuracion.proveedor.eliminarProveedor');
+    }
+    public function modificarProveedor()
+    {
+        return view('admin.configuracion.proveedor.modificarProveedor');
+    }
+    public function consultarProveedor()
+    {
+        return view('admin.configuracion.proveedor.consultarProveedor');
+    }
+    
 
 
 
