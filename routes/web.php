@@ -30,6 +30,10 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/membresia/modificar', [App\Http\Controllers\AdminController::class, 'modificarMembresia'])->name('admin.membresia.modificar');
     Route::get('/admin/membresia/consultar', [App\Http\Controllers\AdminController::class, 'consultarMembresia'])->name('admin.membresia.consultar');
 
+    //-------------------metodos post de membresia ---------------------------
+    Route::post('/admin/membresia/guardar', [App\Http\Controllers\MembresiaController::class, 'guardar'])->name('membresia.guardar');
+
+
     //todas las rutas de suplementos
 
     Route::get('/admin/suplementos', [App\Http\Controllers\AdminController::class, 'suplementos'])->name('admin.suplementos');
