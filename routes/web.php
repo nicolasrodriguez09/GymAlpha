@@ -32,6 +32,10 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
 
     //-------------------metodos post de membresia ---------------------------
     Route::post('/admin/membresia/guardar', [App\Http\Controllers\MembresiaController::class, 'guardar'])->name('membresia.guardar');
+    Route::post('/admin/membresia/eliminar', [App\Http\Controllers\MembresiaController::class, 'eliminar'])->name('membresia.eliminar');
+
+
+
 
 
     //todas las rutas de suplementos

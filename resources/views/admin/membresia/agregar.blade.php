@@ -1,30 +1,105 @@
 @extends('layouts.admin')
 
 @section('content')
-<div style="display: flex; background-color: #013a54; height: 100vh;">
+<style>
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .form-section {
+        flex: 1;
+        background-color: #013a54;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .form-section h2 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        background-color: #001e31;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 250px;
+        border-radius: 4px;
+    }
+
+    .submit-btn {
+        background-color: #00c853;
+        padding: 12px 30px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .image-section {
+        flex: 1;
+        background-color: #002d72;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .image-section img {
+        width: auto;
+        max-height: 90%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+</style>
+
+<div class="container">
     <!-- Formulario -->
-    <div style="flex: 1; padding: 40px; color: white;">
-        <h2 style="text-align: center; font-weight: bold;">agregar membresias</h2>
+    <div class="form-section">
+        <h2>agregar membresias</h2>
+
         <form action="{{ route('membresia.guardar') }}" method="POST">
             @csrf
-            <div style="margin-top: 40px;">
-                <label>nombre membresia</label>
-                <input type="text" name="nombre" required style="display: block; background-color: #001e31; color: white; padding: 10px; margin-bottom: 20px; width: 250px;">
-                
-                <label>descripcion membresia</label>
-                <input type="text" name="descripcion" required style="display: block; background-color: #001e31; color: white; padding: 10px; margin-bottom: 20px; width: 250px;">
-
-                <label>precio membresia</label>
-                <input type="number" name="precio" required style="display: block; background-color: #001e31; color: white; padding: 10px; margin-bottom: 20px; width: 250px;">
+            <div class="form-group">
+                <label for="nombre">nombre membresia</label>
+                <input type="text" name="nombre" required>
             </div>
 
-            <button type="submit" style="background-color: #00c853; padding: 10px 20px; border: none; border-radius: 6px;">guardar</button>
+            <div class="form-group">
+                <label for="descripcion">descripcion membresia</label>
+                <input type="text" name="descripcion" required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">precio membresia</label>
+                <input type="number" name="precio" required>
+            </div>
+
+            <button type="submit" class="submit-btn">guardar</button>
         </form>
     </div>
 
     <!-- Imagen -->
-    <div style="flex: 1; background-color: #002d72; display: flex; align-items: center; justify-content: center;">
-        <h3 style="color: white; font-weight: bold;">imagen</h3>
+    <div class="image-section">
+        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos">
     </div>
 </div>
 @endsection

@@ -28,6 +28,24 @@ class MembresiaController extends Controller
 
     }
 
+    public function eliminar(Request $request)
+    {
+        $request->validate([
+            'id'=> 'required|numeric',
+            
+        ]);
+
+        $membresia = Membresia::find($request->id);
+
+        if($membresia){
+            $membresia->delete();
+            return redirect()->back()->with('success', 'membresia eliminada correctamente');
+        } else {
+            return redirect()->back()->with('success', 'no se encontro la membresia con ese id');
+        }
+    }
+    
+
 
 
 
