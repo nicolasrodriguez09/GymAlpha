@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function consultarMembresia()
     {
-        return view('admin.membresia.consultar');
+        return view('admin.membresia.consultar', ['resultados' => null]);
     }
 
 

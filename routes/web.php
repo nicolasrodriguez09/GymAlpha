@@ -29,11 +29,13 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/membresia/eliminar', [App\Http\Controllers\AdminController::class, 'eliminarMembresia'])->name('admin.membresia.eliminar');
     Route::get('/admin/membresia/modificar', [App\Http\Controllers\AdminController::class, 'modificarMembresia'])->name('admin.membresia.modificar');
     Route::get('/admin/membresia/consultar', [App\Http\Controllers\AdminController::class, 'consultarMembresia'])->name('admin.membresia.consultar');
+    
 
     //-------------------metodos post de membresia ---------------------------
     Route::post('/admin/membresia/guardar', [App\Http\Controllers\MembresiaController::class, 'guardar'])->name('membresia.guardar');
     Route::post('/admin/membresia/eliminar', [App\Http\Controllers\MembresiaController::class, 'eliminar'])->name('membresia.eliminar');
-
+    Route::post('/admin/membresia/modificar', [App\Http\Controllers\MembresiaController::class, 'modificar'])->name('membresia.modificar');
+    Route::post('/admin/membresia/consultar', [App\Http\Controllers\MembresiaController::class, 'consultar'])->name('membresia.consultar');
 
 
 
