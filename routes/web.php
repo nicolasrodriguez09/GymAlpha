@@ -112,6 +112,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/proveedor/eliminarProveedor', [App\Http\Controllers\AdminController::class, 'eliminarProveedor'])->name('admin.configuracion.eliminarProveedor');
     Route::get('/admin/configuracion/proveedor/modificarProveedor', [App\Http\Controllers\AdminController::class, 'modificarProveedor'])->name('admin.configuracion.modificarProveedor');
     Route::get('/admin/configuracion/proveedor/consultarProveedor', [App\Http\Controllers\AdminController::class, 'consultarProveedor'])->name('admin.configuracion.consultarProveedor');
+    //-------------------metodos post de proveedor---------------------------
+
+    Route::post('/admin/configuracion/proveedor/agregar', [App\Http\Controllers\proveedorController::class, 'agregar']) -> name('proveedor.agregar');
+
+
+
 });
 
 require __DIR__.'/auth.php';
