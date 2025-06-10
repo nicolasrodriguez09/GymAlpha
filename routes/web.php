@@ -86,6 +86,16 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/categoriaProducto/mofificarCategoria', [App\Http\Controllers\AdminController::class, 'modificarCategoria'])->name('admin.configuracion.modificarCategoria');
     Route::get('/admin/configuracion/categoriaProducto/consultarCategoria', [App\Http\Controllers\AdminController::class, 'consultarCategoria'])->name('admin.configuracion.consultarCategoria');
 
+    //-------------------metodos post de spinning ---------------------------
+    Route::post('admin/configuracion/categoriaProducto/guardar',[App\Http\Controllers\CategoriaController::class, 'guardar'])->name('categoria.guardar');
+    Route::post('admin/configuracion/categoriaProducto/eliminar',[App\Http\Controllers\CategoriaController::class, 'eliminar'])->name('categoria.eliminar');
+    Route::post('admin/configuracion/categoriaProducto/modificar',[App\Http\Controllers\CategoriaController::class, 'modificar'])->name('categoria.modificar');
+
+
+
+
+
+
     //configuracion formas de pago
     Route::get('/admin/configuracion/formaPago', [App\Http\Controllers\AdminController::class, 'formaPago'])->name('admin.configuracion.formaPago');
     Route::get('/admin/configuracion/formaPago/agregarFormaPago', [App\Http\Controllers\AdminController::class, 'agregarformaPago'])->name('admin.configuracion.agregarFormaPago');

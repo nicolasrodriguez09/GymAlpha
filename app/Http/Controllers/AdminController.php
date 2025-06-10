@@ -159,7 +159,7 @@ class AdminController extends Controller
     }
     public function consultarCategoria ()
     {
-        return view ('admin.configuracion.categoriaProducto.consultarCategoria');
+        return view ('admin.configuracion.categoriaProducto.consultarCategoria',['resultados' => null]);
     }
 
 
@@ -182,7 +182,7 @@ class AdminController extends Controller
     }
     public function consultarformaPago ()
     {
-        return view('admin.configuracion.formaPago.consultarFormaPago');
+        return view('admin.configuracion.formaPago.consultarFormaPago',['resultados' => null]);
     }
 
     
@@ -203,7 +203,7 @@ class AdminController extends Controller
     }
     public function consultarStock ()
     {
-        return view('admin.configuracion.inventario.consultarStock');
+        return view('admin.configuracion.inventario.consultarStock',['resultados' => null]);
     }
 
 
@@ -222,7 +222,7 @@ class AdminController extends Controller
     }
     public function consultarTipo ()
     {
-        return view('admin.configuracion.tipoDocumento.consultarTipo');
+        return view('admin.configuracion.tipoDocumento.consultarTipo',['resultados' => null]);
     }
     public function modificarTipo ()
     {
