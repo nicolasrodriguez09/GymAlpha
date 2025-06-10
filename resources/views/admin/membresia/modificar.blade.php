@@ -76,6 +76,20 @@
     <div class="form-section">
         <h2>modificar membresias</h2>
 
+        @if(session('success'))
+            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">
+                {{session('success')}}
+
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">
+                {{session('error')}}
+
+            </div>
+        @endif
+
         <form action="{{ route('membresia.modificar') }}" method="POST">
             @csrf
             <div class="form-group">

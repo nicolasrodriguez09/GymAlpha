@@ -39,7 +39,7 @@ class spinningController extends Controller
 
             return redirect()->back()->with('success', 'clase eliminada correctamente');
         } else{
-            return redirect()->back()->with('success', 'no se encontro la clase con ese id');
+            return redirect()->back()->with('error', 'no se encontro la clase con ese id');
         }
 
     }

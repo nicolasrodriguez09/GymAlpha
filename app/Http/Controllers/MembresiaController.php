@@ -42,7 +42,7 @@ class MembresiaController extends Controller
             $membresia->delete();
             return redirect()->back()->with('success', 'membresia eliminada correctamente');
         } else {
-            return redirect()->back()->with('success', 'no se encontro la membresia con ese id');
+            return redirect()->back()->with('error', 'no se encontro la membresia con ese id');
         }
     }
 
