@@ -70,7 +70,7 @@ class MembresiaController extends Controller
 
         
     }
-    
+     
     public function consultar(Request $request)
     {
         $request->validate([

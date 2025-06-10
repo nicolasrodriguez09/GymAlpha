@@ -56,6 +56,13 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/spinning/modificar', [App\Http\Controllers\AdminController::class, 'modificarClase'])->name('admin.spinning.modificar');
     Route::get('/admin/spinning/consultar', [App\Http\Controllers\AdminController::class, 'consultarClase'])->name('admin.spinning.consultar');
 
+    //-------------------metodos post de spinning ---------------------------
+    Route::post('/admin/spinning/guardar', [App\Http\Controllers\spinningController::class, 'guardar'])->name('spinning.guardar');
+
+
+
+
+
 
     //configuracion y primera rama derivada
 
