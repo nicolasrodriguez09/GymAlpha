@@ -115,8 +115,9 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     //-------------------metodos post de proveedor---------------------------
 
     Route::post('/admin/configuracion/proveedor/agregar', [App\Http\Controllers\proveedorController::class, 'agregar']) -> name('proveedor.agregar');
-
-
+    Route::post('/admin/configuracion/proveedor/eliminar', [App\Http\Controllers\proveedorController::class, 'eliminar']) -> name('proveedor.eliminar');
+    Route::post('/admin/configuracion/proveedor/modificar', [App\Http\Controllers\proveedorController::class, 'modificar']) -> name('proveedor.modificar');
+    Route::post('/admin/configuracion/proveedor/consultar', [App\Http\Controllers\proveedorController::class, 'consultar']) -> name('proveedor.consultar');
 
 });
 
