@@ -71,7 +71,7 @@ class AdminController extends Controller
 
     public function consultarSuplemento()
     {
-        return view('admin.suplementos.consultar');
+        return view('admin.suplementos.consultar',['resultados' => null]);
     }
 
 
@@ -102,7 +102,7 @@ class AdminController extends Controller
 
     public function consultarClase()
     {
-        return view('admin.spinning.consultar');
+        return view('admin.spinning.consultar', ['resultados' => null]);
     }
 
 

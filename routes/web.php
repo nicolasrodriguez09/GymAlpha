@@ -60,6 +60,7 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::post('/admin/spinning/guardar', [App\Http\Controllers\spinningController::class, 'guardar'])->name('spinning.guardar');
     Route::post('/admin/spinning/eliminar', [App\Http\Controllers\spinningController::class, 'eliminar'])->name('spinning.eliminar');
     Route::post('/admin/spinning/modificar', [App\Http\Controllers\spinningController::class, 'modificar'])->name('spinning.modificar');
+    Route::post('/admin/spinning/consultar', [App\Http\Controllers\spinningController::class, 'consultar'])->name('spinning.consultar');
 
 
 

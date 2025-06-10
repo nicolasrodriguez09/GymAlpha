@@ -69,6 +69,21 @@ class spinningController extends Controller
     
     }
 
+    public function consultar(Request $request)
+    {
+        $request -> validate ([
+            'tipo' => 'required',
+            'busqueda' => 'nullable|string'
+        ]);
+        if ($request->tipo === 'id' && $request->busqueda) {
+            $resultados = Spinning::where('idClaseSpinning', $request->busqueda)->get();
+        } else {
+            $resultados = Spinning::all();
+        }
+
+        return view('admin.membresia.consultar', compact('resultados'));
+    }
+
 
 
 
