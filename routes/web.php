@@ -58,7 +58,8 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
 
     //-------------------metodos post de spinning ---------------------------
     Route::post('/admin/spinning/guardar', [App\Http\Controllers\spinningController::class, 'guardar'])->name('spinning.guardar');
-
+    Route::post('/admin/spinning/eliminar', [App\Http\Controllers\spinningController::class, 'eliminar'])->name('spinning.eliminar');
+    Route::post('/admin/spinning/modificar', [App\Http\Controllers\spinningController::class, 'modificar'])->name('spinning.modificar');
 
 
 
