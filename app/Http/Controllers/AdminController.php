@@ -249,7 +249,7 @@ class AdminController extends Controller
     }
     public function consultarProveedor()
     {
-        return view('admin.configuracion.proveedor.consultarProveedor');
+        return view('admin.configuracion.proveedor.consultarProveedor',['resultados' => null]);
     }
     
 

@@ -81,7 +81,7 @@ class spinningController extends Controller
             $resultados = Spinning::all();
         }
 
-        return view('admin.membresia.consultar', compact('resultados'));
+        return view('admin.spinning.consultar', compact('resultados'));
     }
 
 

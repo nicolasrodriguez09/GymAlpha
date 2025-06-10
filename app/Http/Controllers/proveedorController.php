@@ -68,4 +68,19 @@ class proveedorController extends Controller
         }
 
     }
+
+    public function consultar (Request $request)
+    {
+        $request -> validate ([
+            'tipo' => 'required',
+            'busqueda' => 'nullable|string'
+        ]);
+        if ($request->tipo==='id' && $request->busqueda){
+            $resultados = Proveedor::where('idProveedor', $request->busqueda)-> get();
+        }else{
+            $resultados = Proveedor::all();
+        }
+
+        return view ('admin.configuracion.proveedor.consultarProveedor', compact('resultados'));
+    }
 }

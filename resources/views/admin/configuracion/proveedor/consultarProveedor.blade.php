@@ -98,9 +98,9 @@
 <div class="container">
     <!-- Formulario -->
     <div class="form-section">
-        <h2>consultar membresias</h2>
+        <h2>consultar proveedor</h2>
 
-        <form action="{{ route('membresia.consultar') }}" method="POST">
+        <form action="{{ route('proveedor.consultar') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label>consultar por</label>
@@ -123,17 +123,19 @@
                 <tr>
                     <th>codigo</th>
                     <th>nombre</th>
-                    <th>descripcion</th>
-                    <th>precio</th>
+                    <th>correo</th>
+                    <th>telefono</th>
+                    <th>NIT</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($resultados as $item)
                 <tr>
-                    <td>{{ $item->idMembresia }}</td>
-                    <td>{{ $item->nombreMembresia }}</td>
-                    <td>{{ $item->descripcionMembresia }}</td>
-                    <td>{{ number_format($item->precioMembresia, 0, ',', '.') }}</td>
+                    <td>{{ $item->idProveedor }}</td>
+                    <td>{{ $item->nombreProveedor }}</td>
+                    <td>{{ $item->emailProveedor }}</td>
+                    <td>{{ $item->telefonoProveedor}}</td>
+                    <td>{{ $item->NITPproveedor}}</td>
                 </tr>
                 @empty
                 <tr><td colspan="4">No se encontraron resultados.</td></tr>
