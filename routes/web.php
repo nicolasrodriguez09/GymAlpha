@@ -86,10 +86,11 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/categoriaProducto/mofificarCategoria', [App\Http\Controllers\AdminController::class, 'modificarCategoria'])->name('admin.configuracion.modificarCategoria');
     Route::get('/admin/configuracion/categoriaProducto/consultarCategoria', [App\Http\Controllers\AdminController::class, 'consultarCategoria'])->name('admin.configuracion.consultarCategoria');
 
-    //-------------------metodos post de spinning ---------------------------
+    //-------------------metodos post de categaria de producto ---------------------------
     Route::post('admin/configuracion/categoriaProducto/guardar',[App\Http\Controllers\CategoriaController::class, 'guardar'])->name('categoria.guardar');
     Route::post('admin/configuracion/categoriaProducto/eliminar',[App\Http\Controllers\CategoriaController::class, 'eliminar'])->name('categoria.eliminar');
     Route::post('admin/configuracion/categoriaProducto/modificar',[App\Http\Controllers\CategoriaController::class, 'modificar'])->name('categoria.modificar');
+    Route::post('admin/configuracion/categoriaProducto/consultar',[App\Http\Controllers\CategoriaController::class, 'consultar'])->name('categoria.consultar');
 
 
 
@@ -115,6 +116,13 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/tipoDocumento/eliminarTipo', [App\Http\Controllers\AdminController::class, 'eliminarTipo'])->name('admin.configuracion.eliminarTipo');
     Route::get('/admin/configuracion/tipoDocumento/modificarTipo', [App\Http\Controllers\AdminController::class, 'modificarTipo'])->name('admin.configuracion.modificarTipo');
     Route::get('/admin/configuracion/tipoDocumento/consultarTipo', [App\Http\Controllers\AdminController::class, 'consultarTipo'])->name('admin.configuracion.consultarTipo');
+
+    //-----------------------------metodos post de tipo de documento ------------------------------------
+    Route::post('/admin/configuracion/tipoDocumento/guardar', [App\Http\Controllers\TipoDocumentoController::class, 'guardar']) -> name('admin.configuracion.guardar');
+    Route::post('/admin/configuracion/tipoDocumento/eliminar', [App\Http\Controllers\TipoDocumentoController::class, 'eliminar']) -> name('admin.configuracion.eliminar');
+    Route::post('/admin/configuracion/tipoDocumento/modificar', [App\Http\Controllers\TipoDocumentoController::class, 'modificar']) -> name('admin.configuracion.modificar');
+    Route::post('/admin/configuracion/tipoDocumento/consultar', [App\Http\Controllers\TipoDocumentoController::class, 'consultar']) -> name('admin.configuracion.consultar');
+
 
     //configuracion proveedor
     Route::get('/admin/configuracion/proveedor', [App\Http\Controllers\AdminController::class, 'proveedor'])->name('admin.configuracion.proveedor');

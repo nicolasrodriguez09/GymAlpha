@@ -65,4 +65,19 @@ class CategoriaController extends Controller
             return redirect()->back()->with('error', 'no se encontro el id de esa categoria');
         }
     }
+
+    public function consultar (Request $request){
+        $request -> validate ([
+            'tipo' => 'required',
+            'busqueda' => 'nullable|string'
+        ]);
+        if ($request->tipo === 'id' && $request->busqueda) {
+            $resultados = Categoria::where('idCategoria', $request->busqueda)->get();
+        } else {
+            $resultados = Categoria::all();
+        }
+
+        return view('admin.configuracion.categoriaProducto.consultarCategoria', compact('resultados'));
+    }
+    
 }
