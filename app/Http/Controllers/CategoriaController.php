@@ -26,9 +26,21 @@ class CategoriaController extends Controller
 
     }
 
-    public function eliminar ()
+    public function eliminar (Request $request)
     {
-        return 0;
+        $request -> validate ([
+            'id' => 'required|numeric'
+        ]);
+        
+        $categoria = Categoria::find($request->id);
+        if ($categoria){
+            $categoria->delete();
+
+            return redirect()->back()->with('success', 'se elimino correctamente la categoria');
+        }else{
+            return redirect()->back()->with('error', 'ese id no pertenece a ninguna categoria');
+        }
+        
     }
 
     public function modificar (Request $request){
