@@ -104,6 +104,13 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/formaPago/modificarFormaPago', [App\Http\Controllers\AdminController::class, 'modificarformaPago'])->name('admin.configuracion.modificarFormaPago');
     Route::get('/admin/configuracion/formaPago/consultarFormaPago', [App\Http\Controllers\AdminController::class, 'consultarformaPago'])->name('admin.configuracion.consultarFormaPago');
 
+     //-----------------------------metodos post de tipo de documento ------------------------------------
+    Route::post('/admin/configuracion/formaPago/guardar',[App\Http\Controllers\FormaPagoController::class, 'guardar']) -> name('formaPago.guardar');
+    Route::post('/admin/configuracion/formaPago/eliminar',[App\Http\Controllers\FormaPagoController::class, 'eliminar']) -> name('formaPago.eliminar');
+    Route::post('/admin/configuracion/formaPago/modificar',[App\Http\Controllers\FormaPagoController::class, 'modificar']) -> name('formaPago.modificar');
+    Route::post('/admin/configuracion/formaPago/consultar',[App\Http\Controllers\FormaPagoController::class, 'consultar']) -> name('formaPago.consultar');
+
+
     //configuracion inventario
     Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
     Route::get('/admin/configuracion/inventario/ingresarCantidad', [App\Http\Controllers\AdminController::class, 'ingresarCantidad'])->name('admin.configuracion.ingresarCantidad');
