@@ -82,6 +82,12 @@
 
             </div>
         @endif
+        @if(session('error'))
+            <div style="background-color: #ff5252; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">
+                {{session('error')}}
+
+            </div>
+        @endif
 
         <form action="{{ route('proveedor.modificar') }}" method="POST">
             @csrf

@@ -1,6 +1,125 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1>hola modificar forma de pago</h1>
+<style>
+    .container {
+        display: flex;
+        height: 100vh;
+    }
 
+    .form-section {
+        flex: 1;
+        background-color: #013a54;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .form-section h2 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        background-color: #001e31;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 250px;
+        border-radius: 4px;
+    }
+
+    .submit-btn {
+        background-color: #00c853;
+        padding: 12px 30px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .image-section {
+        flex: 1;
+        background-color: #002d72;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .image-section img {
+        width: auto;
+        max-height: 90%;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+</style>
+
+<div class="container">
+    <!-- Formulario -->
+    <div class="form-section">
+        <h2>modificar forma de pago</h2>
+
+        @if(session('success'))
+            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">
+                {{session('success')}}
+
+            </div>
+        @endif
+        @if(session('error'))
+            <div style="background-color: #ff5252; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">
+                {{session('error')}}
+
+            </div>
+        @endif
+
+        <form action="{{ route('formaPago.modificar') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="id">id forma de pago</label>
+                <input type="number" name="id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nombreBanco">nombre del banco</label>
+                <input type="text" name="nombreBanco" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nombreTitular">nombre del titular</label>
+                <input type="text" name="nombreTitular" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cuenta">numero de cuenta</label>
+                <input type="text" name="cuenta" required>
+            </div>
+
+            
+
+            <button type="submit" class="submit-btn">guardar</button>
+        </form>
+    </div>
+
+    <!-- Imagen -->
+    <div class="image-section">
+        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos">
+    </div>
+</div>
 @endsection
