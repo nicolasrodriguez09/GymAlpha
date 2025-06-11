@@ -118,10 +118,10 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/tipoDocumento/consultarTipo', [App\Http\Controllers\AdminController::class, 'consultarTipo'])->name('admin.configuracion.consultarTipo');
 
     //-----------------------------metodos post de tipo de documento ------------------------------------
-    Route::post('/admin/configuracion/tipoDocumento/guardar', [App\Http\Controllers\TipoDocumentoController::class, 'guardar']) -> name('admin.configuracion.guardar');
-    Route::post('/admin/configuracion/tipoDocumento/eliminar', [App\Http\Controllers\TipoDocumentoController::class, 'eliminar']) -> name('admin.configuracion.eliminar');
-    Route::post('/admin/configuracion/tipoDocumento/modificar', [App\Http\Controllers\TipoDocumentoController::class, 'modificar']) -> name('admin.configuracion.modificar');
-    Route::post('/admin/configuracion/tipoDocumento/consultar', [App\Http\Controllers\TipoDocumentoController::class, 'consultar']) -> name('admin.configuracion.consultar');
+    Route::post('/admin/configuracion/tipoDocumento/guardar', [App\Http\Controllers\TipoDocumentoController::class, 'guardar']) -> name('tipoDocumento.guardar');
+    Route::post('/admin/configuracion/tipoDocumento/eliminar', [App\Http\Controllers\TipoDocumentoController::class, 'eliminar']) -> name('tipoDocumento.eliminar');
+    Route::post('/admin/configuracion/tipoDocumento/modificar', [App\Http\Controllers\TipoDocumentoController::class, 'modificar']) -> name('tipoDocumento.modificar');
+    Route::post('/admin/configuracion/tipoDocumento/consultar', [App\Http\Controllers\TipoDocumentoController::class, 'consultar']) -> name('tipoDocumento.consultar');
 
 
     //configuracion proveedor
