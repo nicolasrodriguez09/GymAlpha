@@ -135,7 +135,7 @@ class AdminController extends Controller
     }
     public function consultarPermiso()
     {
-        return view('admin.configuracion.permisos.consultarPermiso');
+        return view('admin.configuracion.permisos.consultarPermiso',['resultados' => null]);
     }
 
 

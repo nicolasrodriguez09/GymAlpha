@@ -61,4 +61,20 @@ class TipoDocumentoController extends Controller
             return redirect()->back()->with('error', 'no se encontro el id de tipo documento');
         }
     }
+
+    public function consultar (Request $request)
+    {
+        $request -> validate ([
+            'tipo' => 'required',
+            'busqueda' => 'nullable|string'
+        ]);
+
+        if($request->tipo==='id'&& $request->busqueda){
+            $resultados = TipoDocumento::where('idTipoDoc', $request->busqueda)-> get();
+        }else{
+            $resultados = TipoDocumento::all();
+        }
+        return view('admin.configuracion.TipoDocumento.consultarTipo', compact('resultados'));
+
+    }
 }
