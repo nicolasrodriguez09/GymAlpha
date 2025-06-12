@@ -50,9 +50,18 @@ class PermisosController extends Controller
             return back()->with('error', 'No existe ningún usuario con ese correo.');
         }
 
-        if ($user->emailUsu === 'admin@gym.com'){
-            return back()->with('error', 'No se puede cambiar el rol a este usuario.');
+        //protegidos
+        $protegidos =[
+            'admin@gym.com',
+            'nicolas.rodriguez.quintero@correounivalle.edu.co',
+            'Maria.granda@correounivalle.edu.co'
+        ];
+
+        if (in_array($user->emailUsu, $protegidos, true)){
+            return back()->with('error', 'No se puede cambiar el rol de este usuario.');
         }
+
+        
 
         
         $userRol = 1;
