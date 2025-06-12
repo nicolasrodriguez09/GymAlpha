@@ -98,7 +98,7 @@
 <div class="container">
     <!-- Formulario -->
     <div class="form-section">
-        <h2>consultar forma de pago</h2>
+        <h2>Consultar forma de pago</h2>
 
         <form action="{{ route('formaPago.consultar') }}" method="POST">
             @csrf
