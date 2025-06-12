@@ -69,7 +69,9 @@ class AdminController extends Controller
 
     public function modificarSuplemento()
     {
-        return view('admin.suplementos.modificar');
+        $tiposCategoria = \App\Models\Categoria::all();
+        $proveedores    = \App\Models\Proveedor::all();
+        return view('admin.suplementos.modificar', compact('tiposCategoria','proveedores'));
     }
 
     public function consultarSuplemento()

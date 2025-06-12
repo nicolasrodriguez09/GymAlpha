@@ -26,7 +26,7 @@ class SuplementoController extends Controller
         
         $ruta = $request->file('imagen')->store('suplementos', 'public');
 
-        // 3) Crear el suplemento mapeando cada campo
+        // Crear el suplemento mapeando cada campo
         Suplemento::create([
             'nombreSuplemento'=> $request->nombre,
             'descripcionSuplemento'=> $request->descripcion,
@@ -38,6 +38,48 @@ class SuplementoController extends Controller
         ]);
 
         return back()->with('success', 'Suplemento guardado correctamente.');
+    }
+
+    public function modificar(Request $request)
+    {
+        
+        $request->validate([
+            'id' => 'required|numeric',
+            'categoria'=> 'required|integer|exists:categoria_suplemento,idCategoria',
+            'proveedor'=> 'required|integer|exists:proveedor,idProveedor',
+            'marca' => 'required|string|max:100',
+            'nombre'  => 'required|string|max:100',
+            'descripcion' => 'required|string|max:250',
+            'precio'=> 'required|numeric|min:0',
+            'imagen'=> 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        
+        $suplemento = Suplemento::find($request->id);
+        if (! $suplemento) {
+            return back()->with('error', 'No se encontró suplemento con ese id');
+        }
+
+        
+        
+        if ($request->hasFile('imagen')) {
+            $ruta = $request->file('imagen')->store('suplementos', 'public');
+        } else {
+            $ruta = $suplemento->imagenSuplemento;
+        }
+
+        
+        $suplemento->update([
+            'nombreSuplemento'=> $request->nombre,
+            'descripcionSuplemento'=> $request->descripcion,
+            'marcaSuplemento'  => $request->marca,
+            'precioSuplemento'=> $request->precio,
+            'idCategoria' => $request->categoria,
+            'idProveedor' => $request->proveedor,
+            'imagenSuplemento'=> $ruta,
+        ]);
+
+        return back()->with('success', 'Suplemento modificado correctamente');
     }
 
 }

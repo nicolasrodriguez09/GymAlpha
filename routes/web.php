@@ -49,6 +49,9 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/suplementos/consultar', [App\Http\Controllers\AdminController::class, 'consultarSuplemento'])->name('admin.suplementos.consultar');
     //-------------------metodos post de suplementos ---------------------------
     Route::post('/admin/suplementos/guardar', [App\Http\Controllers\SuplementoController::class, 'guardar'])->name('suplementos.guardar');
+    Route::post('/admin/suplementos/modificar', [App\Http\Controllers\SuplementoController::class, 'modificar'])->name('suplementos.modificar');
+    Route::post('/admin/suplementos/eliminar', [App\Http\Controllers\SuplementoController::class, 'eliminar'])->name('suplementos.eliminar');
+    Route::post('/admin/suplementos/consultar', [App\Http\Controllers\SuplementoController::class, 'consultar'])->name('suplementos.consultar');
 
 
 
