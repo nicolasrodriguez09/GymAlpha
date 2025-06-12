@@ -79,7 +79,7 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     //-------------------metodos post de categaria de producto ---------------------------
     Route::post('/admin/configuracion/permisos/dar',[App\Http\Controllers\PermisosController::class, 'darPermiso']) -> name('permisos.dar');
     Route::post('/admin/configuracion/permisos/quitar',[App\Http\Controllers\PermisosController::class, 'quitarPermiso']) -> name('permisos.quitar');
-
+    Route::post('/admin/configuracion/permisos/consultar',[App\Http\Controllers\PermisosController::class, 'consultarPermiso']) -> name('permisos.consultar');
 
     //configuracion categoria de producto
     Route::get('/admin/configuracion/categoriaProducto', [App\Http\Controllers\AdminController::class, 'categoriaProducto'])->name('admin.configuracion.categoriaProducto');

@@ -74,4 +74,24 @@ class PermisosController extends Controller
         return back()->with('success', 'Se quito permiso de admin correctamente');
     }
 
+    public function consultarPermiso (Request $request)
+    {
+        $data = $request->validate([
+            'tipo' => 'required|in:todos,email',
+            'busqueda' => 'nullable|string'
+        ]);
+
+        $adminRol = 2;
+
+        if($data['tipo'] === 'email' && $data['busqueda']){
+            $resultados = User::where('emailUsu', $data['busqueda']) -> where('idRol', $adminRol) -> get();
+        }else{
+            $resultados = User::where('idRol',$adminRol) -> get();
+        }
+
+        return view('admin.configuracion.permisos.consultarPermiso', compact('resultados'));
+    }
+
+    
+
 }
