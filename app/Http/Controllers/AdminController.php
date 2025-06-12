@@ -56,7 +56,10 @@ class AdminController extends Controller
 
     public function agregarSuplemento()
     {
-        return view('admin.suplementos.agregar');
+        $tiposCategoria = \App\Models\Categoria::all();
+        $proveedores    = \App\Models\Proveedor::all();
+        return view('admin.suplementos.agregar', compact('tiposCategoria','proveedores'));
+        
     }
 
     public function eliminarSuplemento()

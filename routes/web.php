@@ -47,6 +47,11 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/suplementos/eliminar', [App\Http\Controllers\AdminController::class, 'eliminarSuplemento'])->name('admin.suplementos.eliminar');
     Route::get('/admin/suplementos/modificar', [App\Http\Controllers\AdminController::class, 'modificarSuplemento'])->name('admin.suplementos.modificar');
     Route::get('/admin/suplementos/consultar', [App\Http\Controllers\AdminController::class, 'consultarSuplemento'])->name('admin.suplementos.consultar');
+    //-------------------metodos post de suplementos ---------------------------
+    Route::post('/admin/suplementos/guardar', [App\Http\Controllers\SuplementoController::class, 'guardar'])->name('suplementos.guardar');
+
+
+
 
     //todas las rutas de spinning
 
@@ -76,10 +81,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/configuracion/permisos/darPermiso', [App\Http\Controllers\AdminController::class, 'darPermiso'])->name('admin.configuracion.darPermiso');
     Route::get('/admin/configuracion/permisos/quitarPermiso', [App\Http\Controllers\AdminController::class, 'quitarPermiso'])->name('admin.configuracion.quitarPermiso');
     Route::get('/admin/configuracion/permisos/consultarPermiso', [App\Http\Controllers\AdminController::class, 'consultarPermiso'])->name('admin.configuracion.consultarPermiso');
+    
     //-------------------metodos post de categaria de producto ---------------------------
     Route::post('/admin/configuracion/permisos/dar',[App\Http\Controllers\PermisosController::class, 'darPermiso']) -> name('permisos.dar');
     Route::post('/admin/configuracion/permisos/quitar',[App\Http\Controllers\PermisosController::class, 'quitarPermiso']) -> name('permisos.quitar');
     Route::post('/admin/configuracion/permisos/consultar',[App\Http\Controllers\PermisosController::class, 'consultarPermiso']) -> name('permisos.consultar');
+
 
     //configuracion categoria de producto
     Route::get('/admin/configuracion/categoriaProducto', [App\Http\Controllers\AdminController::class, 'categoriaProducto'])->name('admin.configuracion.categoriaProducto');
