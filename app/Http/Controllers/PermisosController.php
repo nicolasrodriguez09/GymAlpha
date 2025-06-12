@@ -8,24 +8,61 @@ use App\Models\User;
 class PermisosController extends Controller
 {
     
-    public function darPermiso (Request $request)
+    public function darPermiso(Request $request)
     {
-        $data = $request -> validate ([
-            'email' => 'required|email|exists:user,emailUsu'
-        ], [
-            'email.exists' => 'No existe usuario con ese correo'
+        // 
+        $request->validate([
+            'email' => 'required|email',
         ]);
 
-        $user = User::where('emailUsu', $data['email'])->first();
-        $adminRol = 2;
+        
+        $user = \App\Models\User::where('emailUsu', $request->email)->first();
 
-        if($user->idRol == $adminRol){
-            return redirect()->back()->with('success', 'el usuario ya es admin');
-        }else{
-            $user->idRol = $adminRol;
-            $user->save();
-
-            return redirect()->back()->with('success', 'se otorgo permiso de admin correctamente');
+        
+        if (! $user) {
+            return back()->with('error', 'No existe ningún usuario con ese correo.');
+                
         }
+
+        
+        $adminRol = 2;
+        if ($user->idRol == $adminRol) {
+            return back()->with('success', 'El usuario ya es admin');
+        }
+        $user->idRol = $adminRol;
+        $user->save();
+
+        return back()->with('success', 'Se otorgó permiso de admin correctamente');
     }
+
+    public function quitarPermiso(Request $request)
+    {
+        // 
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        
+        $user = \App\Models\User::where('emailUsu', $request->email)->first();
+
+        
+        if (! $user) {
+            return back()->with('error', 'No existe ningún usuario con ese correo.');
+        }
+
+        if ($user->emailUsu === 'admin@gym.com'){
+            return back()->with('error', 'No se puede cambiar el rol a este usuario.');
+        }
+
+        
+        $userRol = 1;
+        if ($user->idRol == $userRol) {
+            return back()->with('success', 'El usuario no tiene permisos');
+        }
+        $user->idRol = $userRol;
+        $user->save();
+
+        return back()->with('success', 'Se quito permiso de admin correctamente');
+    }
+
 }
