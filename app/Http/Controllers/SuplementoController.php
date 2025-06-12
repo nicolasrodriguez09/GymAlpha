@@ -40,6 +40,26 @@ class SuplementoController extends Controller
         return back()->with('success', 'Suplemento guardado correctamente.');
     }
 
+    public function eliminar (Request $request)
+    {
+        $request->validate ([
+            'id' => 'required|numeric'
+        ]);
+
+        $suplemento = Suplemento::find($request->id);
+
+        if($suplemento){
+            $suplemento->delete();
+
+            return back()->with('success','suplemento eliminado correctamente');
+        }else{
+            return back()->with('error','no se encontro suplemento con ese id');
+        }
+    }
+
+
+
+
     public function modificar(Request $request)
     {
         
