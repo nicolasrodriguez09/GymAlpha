@@ -77,7 +77,7 @@
 <div class="container">
     <!-- Formulario -->
     <div class="form-section">
-        <h2>eliminar categoria</h2>
+        <h2>Eliminar categoria</h2>
 
         @if(session('success'))
             <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px;">

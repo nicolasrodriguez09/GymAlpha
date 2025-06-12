@@ -74,7 +74,7 @@
 <div class="container">
     <!-- Formulario -->
     <div class="form-section">
-        <h2>modificar categoria</h2>
+        <h2>Modificar categoria</h2>
 
         {{-- Mensaje de éxito --}}
         @if(session('success'))

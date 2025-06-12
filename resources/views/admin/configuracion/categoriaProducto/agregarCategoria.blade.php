@@ -74,7 +74,7 @@
 <div class="container">
     <!-- Formulario -->
     <div class="form-section">
-        <h2>Agregar categoría de suplemento</h2>
+        <h2>Agregar categoría </h2>
 
         {{-- Mensaje de éxito --}}
         @if(session('success'))
