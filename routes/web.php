@@ -46,12 +46,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/suplementos/agregar', [App\Http\Controllers\AdminController::class, 'agregarSuplemento'])->name('admin.suplementos.agregar');
     Route::get('/admin/suplementos/eliminar', [App\Http\Controllers\AdminController::class, 'eliminarSuplemento'])->name('admin.suplementos.eliminar');
     Route::get('/admin/suplementos/modificar', [App\Http\Controllers\AdminController::class, 'modificarSuplemento'])->name('admin.suplementos.modificar');
-    Route::get('/admin/suplementos/consultar', [App\Http\Controllers\AdminController::class, 'consultarSuplemento'])->name('admin.suplementos.consultar');
+    Route::get('/admin/suplementos/consultar', [App\Http\Controllers\InventarioController::class,'consultarStock'])->name('admin.suplementos.consultar');
     //-------------------metodos post de suplementos ---------------------------
     Route::post('/admin/suplementos/guardar', [App\Http\Controllers\SuplementoController::class, 'guardar'])->name('suplementos.guardar');
     Route::post('/admin/suplementos/modificar', [App\Http\Controllers\SuplementoController::class, 'modificar'])->name('suplementos.modificar');
     Route::post('/admin/suplementos/eliminar', [App\Http\Controllers\SuplementoController::class, 'eliminar'])->name('suplementos.eliminar');
-    Route::post('/admin/suplementos/consultar', [App\Http\Controllers\SuplementoController::class, 'consultar'])->name('suplementos.consultar');
+    
 
 
 
@@ -125,9 +125,12 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
 
     //configuracion inventario
     Route::get('/admin/configuracion/inventario', [App\Http\Controllers\AdminController::class, 'inventario'])->name('admin.configuracion.inventario');
-    Route::get('/admin/configuracion/inventario/ingresarCantidad', [App\Http\Controllers\AdminController::class, 'ingresarCantidad'])->name('admin.configuracion.ingresarCantidad');
-    Route::get('/admin/configuracion/inventario/registroVentas', [App\Http\Controllers\AdminController::class, 'registroVentas'])->name('admin.configuracion.registroVentas');
-    Route::get('/admin/configuracion/inventario/consultarStock', [App\Http\Controllers\AdminController::class, 'consultarStock'])->name('admin.configuracion.consultarStock');
+    Route::get('/admin/configuracion/inventario/ingresar',  [App\Http\Controllers\InventarioController::class,'ingresarCantidad'])->name('admin.configuracion.inventario.ingresar');
+    Route::post('/admin/configuracion/inventario/ingresar', [App\Http\Controllers\InventarioController::class,'store'])           ->name('admin.configuracion.inventario.store');
+    Route::get('/admin/configuracion/inventario/ventas',    [App\Http\Controllers\InventarioController::class,'registroVentas']) ->name('admin.configuracion.inventario.ventas');
+    Route::get('/admin/configuracion/inventario/stock',     [App\Http\Controllers\InventarioController::class,'consultarStock'])->name('admin.configuracion.inventario.stock');
+
+
 
     //configuracion tipo de documento
     Route::get('/admin/configuracion/tipoDocumento', [App\Http\Controllers\AdminController::class, 'tipoDocumento'])->name('admin.configuracion.tipoDocumento');

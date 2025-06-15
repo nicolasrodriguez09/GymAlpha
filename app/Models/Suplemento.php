@@ -16,6 +16,7 @@ class Suplemento extends Model
         'precioSuplemento',
         'idCategoria',
         'idProveedor',
-        'imagenSuplemento',    
+        'imagenSuplemento', 
+        'stock'   
     ];
 }

@@ -11,13 +11,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // 1) Indica la tabla en singular:
+    
     protected $table = 'user';
 
-    // 2) Clave primaria personalizada:
+    
     protected $primaryKey = 'idUsuario';
 
-    // 3) Campos asignables en masa:
+    
     protected $fillable = [
         'nombreUsu',
         'apellidoUsu',
