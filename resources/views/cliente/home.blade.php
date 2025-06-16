@@ -72,7 +72,10 @@
         <h1>Bienvenido al Gym</h1>
 
         <div class="info-icon">
-            <img src="{{ asset('images/cart.png') }}" alt="Carrito">
+            <a href="{{ route('cliente.carrito') }}" style="margin-right: 30px;" title="Inicio">
+                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 50px; height: 50px;">
+            </a>
+            
             <span style="font-size: 1.1rem;">Gestiona tus pagos, suplementos, entrenadores y clases desde un solo lugar.</span>
         </div>
 

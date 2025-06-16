@@ -60,7 +60,7 @@
     <div class="navbar">
         <div class="navbar-left" style="display: flex; align-items: center;">
             <!-- Ícono mancuerna como acceso a home -->
-            <a href="{{ route('admin.home') }}" style="margin-right: 30px;" title="Inicio">
+            <a href="{{ route('cliente.home') }}" style="margin-right: 30px;" title="Inicio">
                 <img src="{{ asset('images/mancuerna.png') }}" alt="Inicio" style="width: 50px; height: 50px;">
             </a>
 

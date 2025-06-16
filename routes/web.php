@@ -36,6 +36,16 @@ Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(
     Route::get('/cliente/membresias', [App\Http\Controllers\ClienteController::class, 'membresias'])->name('cliente.membresias');
     Route::post('/cliente/carrito/membresia',[App\Http\Controllers\ClienteController::class, 'addMembresia'])->name('cliente.carrito.addMembresia');
 
+    Route::get('/cliente/suplementos', [App\Http\Controllers\ClienteController::class, 'suplementos'])->name('cliente.suplementos');
+
+
+    Route::get('/cliente/carrito', [App\Http\Controllers\ClienteController::class, 'verCarrito'])->name('cliente.carrito');
+    Route::post('/cliente/carrito/{key}/increment',[App\Http\Controllers\ClienteController::class,'incrementItem'])->name('cliente.carrito.increment');
+    Route::post('/cliente/carrito/{key}/decrement',[App\Http\Controllers\ClienteController::class,'decrementItem'])->name('cliente.carrito.decrement');
+    Route::post('/cliente/carrito/checkout',[App\Http\Controllers\ClienteController::class,'checkout'])->name('cliente.carrito.checkout');
+    Route::delete('/cliente/carrito',[App\Http\Controllers\ClienteController::class,'clearCart'])->name('cliente.carrito.clear');
+
+
 });
 
 
