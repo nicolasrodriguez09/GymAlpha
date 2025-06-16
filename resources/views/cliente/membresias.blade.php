@@ -11,97 +11,86 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         padding: 40px;
+        overflow-y: auto;
     }
     .form-section h2 {
         font-size: 2.2rem;
         font-weight: bold;
         margin-bottom: 40px;
+        text-transform: lowercase;
     }
     .cards-container {
         display: flex;
+        flex-wrap: wrap;
         gap: 20px;
-        margin-bottom: 40px;
+        justify-content: center;
     }
     .card {
-        position: relative;
-        cursor: pointer;
-    }
-    .card input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-    .card-content {
-        width: 160px;
-        height: 160px;
-        background-color: #1565c0;
+        background-color: #001e31;
         border: 4px solid #001e31;
         border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: white;
+        width: 160px;
+        overflow: hidden;
         text-align: center;
         transition: border-color 0.2s;
     }
-    .card input:checked + .card-content {
+    .card:hover {
         border-color: #00c853;
     }
-    .card-content div { margin: 4px 0; }
+    .card img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .card-content {
+        padding: 10px;
+    }
+    .card-content .name {
+        font-weight: bold;
+        margin-bottom: 6px;
+        text-transform: lowercase;
+    }
+    .card-content .desc {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+    .card-content .price {
+        margin-bottom: 10px;
+        text-transform: lowercase;
+    }
     .submit-btn {
         background-color: #00c853;
-        padding: 12px 40px;
-        font-size: 1rem;
+        padding: 8px 20px;
+        font-size: 0.9rem;
         border: none;
         border-radius: 8px;
         cursor: pointer;
         color: white;
-    }
-    .image-section {
-        flex: 1;
-        background-color: #002d72;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .image-section img {
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        margin-bottom: 10px;
+        text-transform: lowercase;
     }
 </style>
 
 <div class="container">
     <div class="form-section">
-        <h2>Membresías</h2>
+        <h2>membresías</h2>
 
-        <form action="{{ route('cliente.carrito.addMembresia') }}" method="POST">
-            @csrf
-
-            <div class="cards-container">
-                @foreach($membresias as $m)
-                <label class="card">
-                    <input type="radio"
-                           name="membresia_id"
-                           value="{{ $m->idMembresia }}"
-                           required>
-                    <div class="card-content">
-                        <div>{{ $m->nombreMembresia }}</div>
-                        <div>{{ $m->duracion }}</div>
-                        <div>${{ number_format($m->precioMembresia,0,',','.') }}</div>
-                    </div>
-                </label>
-                @endforeach
-            </div>
-
-            <button type="submit" class="submit-btn">Agregar al carrito</button>
-        </form>
+        <div class="cards-container">
+            @foreach($membresias as $m)
+            <form action="{{ route('cliente.carrito.addMembresia') }}" method="POST" class="card">
+                @csrf
+                <img src="{{ asset('images/membresias.png') }}" alt="{{ $m->nombreMembresia }}">
+                <div class="card-content">
+                    <div class="name">{{ $m->nombreMembresia }}</div>
+                    <div class="desc">{{ Str::limit($m->descripcionMembresia, 50) }}</div>
+                    <div class="price">${{ number_format($m->precioMembresia,2,',','.') }}</div>
+                    <input type="hidden" name="membresia_id" value="{{ $m->idMembresia }}">
+                    <button type="submit" class="submit-btn">agregar</button>
+                </div>
+            </form>
+            @endforeach
+        </div>
     </div>
-
-   
 </div>
 @endsection
