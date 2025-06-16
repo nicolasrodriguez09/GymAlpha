@@ -12,12 +12,15 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            // Si es admin, al panel de admin
-            if (Auth::user()->rol->nombreRol === 'administrador') {
+            $rol = Auth::user()->rol->nombreRol;
+
+            if ($rol === 'administrador'){
                 return redirect()->route('admin.home');
             }
-            // Si no, al dashboard “cliente”
-            return redirect(RouteServiceProvider::HOME);
+
+            if ($roll === 'cliente'){
+                return redirect()->route('cliente.home');
+            }
         }
 
         return $next($request);

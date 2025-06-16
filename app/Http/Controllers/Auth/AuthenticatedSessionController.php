@@ -44,16 +44,19 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        // 3) Si la autenticación pasa:
+        
         $request->session()->regenerate();
+        
 
         $user = Auth::user();
 
-        if ($user->rol->nombreRol === 'administrador') {
+        if ($user->rol->idRol === 2) {
             return redirect()->route('admin.home');
         }
 
-        return redirect('/dashboard');
+        if ($user->rol-> idRol === 1){
+            return redirect()->route('cliente.home');
+        }
     }
 
     /**

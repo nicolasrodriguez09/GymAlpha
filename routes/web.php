@@ -8,11 +8,14 @@ Route::get('/', function () {
     // Si ya está logueado...
     if (Auth::check()) {
         // si es admin, al home de admin
-        if (Auth::user()->rol->nombreRol === 'administrador') {
+        if (Auth::user()->rol->idRol === 2) {
             return redirect()->route('admin.home');
         }
-        // si no, al dashboard normal
-        return redirect()->route('dashboard');
+
+        if (Auth::user()->rol->idRol === 1) {
+            return redirect()->route('cliente.home');
+        }
+        
     }
     // si no está logueado, muestra la welcome
     return view('welcome');
@@ -27,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(){
+    Route::get('/cliente/home', [App\Http\Controllers\ClienteController::class, 'home'])->name('cliente.home'); 
+});
+
+
 
 Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(function () {
     //rutas con verificacion de roles empezando por admin home
