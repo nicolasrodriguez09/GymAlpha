@@ -76,7 +76,7 @@
                 <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 50px; height: 50px;">
             </a>
             
-            <span style="font-size: 1.1rem;">Gestiona tus pagos, suplementos, entrenadores y clases desde un solo lugar.</span>
+            <span style="font-size: 1.1rem;">carrito de compras.</span>
         </div>
 
         <h3>

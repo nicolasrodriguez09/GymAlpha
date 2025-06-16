@@ -37,6 +37,7 @@ Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(
     Route::post('/cliente/carrito/membresia',[App\Http\Controllers\ClienteController::class, 'addMembresia'])->name('cliente.carrito.addMembresia');
 
     Route::get('/cliente/suplementos', [App\Http\Controllers\ClienteController::class, 'suplementos'])->name('cliente.suplementos');
+    Route::get('/cliente/carrito/suplementos', [App\Http\Controllers\ClienteController::class, 'addSuplementos'])->name('cliente.carrito.addSuplemento');
 
 
     Route::get('/cliente/carrito', [App\Http\Controllers\ClienteController::class, 'verCarrito'])->name('cliente.carrito');
