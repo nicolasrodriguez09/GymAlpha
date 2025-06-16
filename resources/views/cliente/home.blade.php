@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.cliente')
 
 @section('content')
 <style>
@@ -71,7 +71,10 @@
     <div class="form-section">
         <h1>Bienvenido al Gym</h1>
 
-        
+        <div class="info-icon">
+            <img src="{{ asset('images/cart.png') }}" alt="Carrito">
+            <span style="font-size: 1.1rem;">Gestiona tus pagos, suplementos, entrenadores y clases desde un solo lugar.</span>
+        </div>
 
         <h3>
             En GymAlpha nos enfocamos en ofrecerte una experiencia completa para tu bienestar físico.

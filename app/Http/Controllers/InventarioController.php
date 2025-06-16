@@ -21,7 +21,7 @@ class InventarioController extends Controller
     return view('admin.configuracion.inventario.ingresar', compact('suplementos'));
   }
 
-  // 2b) Procesar el POST de ingreso/salida
+  
   public function store(Request $request)
   {
     $data = $request->validate([
@@ -49,7 +49,7 @@ class InventarioController extends Controller
     return back()->with('success','Movimiento registrado.');
   }
 
-  // 3) Registro de ventas (solo salidas), opcionalmente filtrado por producto
+  
   public function registroVentas(Request $request)
   {
     $query = Inventario::with('suplemento','usuario')
@@ -73,7 +73,7 @@ class InventarioController extends Controller
     return view('admin.configuracion.inventario.ventas', compact('ventas','suplementos'));
   }
 
-  // 4) Consultar stock actual, con filtro ID o “todos”
+  
   public function consultarStock(Request $request)
   {
     $q = $request->input('q');

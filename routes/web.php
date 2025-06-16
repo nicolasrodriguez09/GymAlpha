@@ -5,6 +5,16 @@ use App\Http\Middleware\RolMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    // Si ya está logueado...
+    if (Auth::check()) {
+        // si es admin, al home de admin
+        if (Auth::user()->rol->nombreRol === 'administrador') {
+            return redirect()->route('admin.home');
+        }
+        // si no, al dashboard normal
+        return redirect()->route('dashboard');
+    }
+    // si no está logueado, muestra la welcome
     return view('welcome');
 });
 
@@ -13,14 +23,26 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(function () {
     //rutas con verificacion de roles empezando por admin home
     Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'home'])->name('admin.home');
+
+    Route::prefix('admin')->name('admin.')->group(function(){
+        // Perfil de admin (reusa Breeze)
+        Route::get('profile',   [App\Http\Controllers\ProfileController::class, 'edit'])
+            ->name('profile.edit');
+        Route::patch('profile', [App\Http\Controllers\ProfileController::class, 'update'])
+            ->name('profile.update');
+        Route::delete('profile',[App\Http\Controllers\ProfileController::class, 'destroy'])
+            ->name('profile.destroy');
+
+        
+    });
 
     //todas las rutas de membresia
 
@@ -121,6 +143,11 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::post('/admin/configuracion/formaPago/eliminar',[App\Http\Controllers\FormaPagoController::class, 'eliminar']) -> name('formaPago.eliminar');
     Route::post('/admin/configuracion/formaPago/modificar',[App\Http\Controllers\FormaPagoController::class, 'modificar']) -> name('formaPago.modificar');
     Route::post('/admin/configuracion/formaPago/consultar',[App\Http\Controllers\FormaPagoController::class, 'consultar']) -> name('formaPago.consultar');
+
+
+
+
+
 
 
     //configuracion inventario

@@ -65,15 +65,15 @@
             </a>
 
             <!-- Navegación -->
-            <a href="{{ route('admin.membresia') }}" class="{{ request()->is('admin/membresia') ? 'active' : '' }}">Membresía</a>
-            <a href="{{ route('admin.suplementos') }}" class="{{ request()->is('admin/suplementos') ? 'active' : '' }}">Suplementos</a>
-            <a href="{{ route('admin.spinning') }}" class="{{ request()->is('admin/spinning') ? 'active' : '' }}">Spinning</a>
-            <a href="{{ route('admin.configuracion') }}" class="{{ request()->is('admin/configuracion') ? 'active' : '' }}">Configuración</a>
+            <a href="#" class="{{ request()->is('admin/membresia') ? 'active' : '' }}">Membresía</a>
+            <a href="#" class="{{ request()->is('admin/suplementos') ? 'active' : '' }}">Suplementos</a>
+            <a href="#" class="{{ request()->is('admin/spinning') ? 'active' : '' }}">Spinning</a>
+            
         </div>
 
         <div class="navbar-right">
             <a 
-            href="{{ route('admin.profile.edit') }}" 
+            href="#" 
             class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}"
             style="color:white; text-decoration:none; font-weight:bold;"
             >
