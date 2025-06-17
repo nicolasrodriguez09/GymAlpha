@@ -153,7 +153,7 @@
     </div>
 
     <div class="image-section">
-        {{-- <img src="{{ asset('images/carrito.png') }}" alt="Carrito de Compras"> --}}
+        {{-- <img src="{{ ('images/compras.png') }}" alt="Carrito de Compras"> --}}
     </div>
 </div>
 @endsection

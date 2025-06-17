@@ -67,7 +67,7 @@
             <!-- Navegación -->
             <a href="{{ route('cliente.membresias') }}" class="{{ request()->is('admin/membresia') ? 'active' : '' }}">Membresía</a>
             <a href="{{ route('cliente.suplementos') }}" class="{{ request()->is('admin/suplementos') ? 'active' : '' }}">Suplementos</a>
-            <a href="#" class="{{ request()->is('admin/spinning') ? 'active' : '' }}">Spinning</a>
+            <a href="{{ route('cliente.spinning') }}" class="{{ request()->is('admin/spinning') ? 'active' : '' }}">Spinning</a>
             
         </div>
 

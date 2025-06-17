@@ -21,15 +21,19 @@
         text-transform: lowercase;
     }
     .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 20px;
+        row-gap:    20px;
+        
         justify-content: center;
+        padding: 0 20px;
     }
     .card {
         background-color: #001e31;
         border: 4px solid #001e31;
         border-radius: 20px;
+        
         width: 160px;
         overflow: hidden;
         text-align: center;
@@ -75,9 +79,17 @@
 <div class="container">
     <div class="form-section">
         <h2>suplementos</h2>
+        @if(session('success'))
+            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px; text-transform: lowercase;">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <div class="cards-container">
             @foreach($suplementos as $s)
+
+            
+
             <form action="{{ route('cliente.carrito.addSuplemento') }}" method="POST" class="card">
                 @csrf
                 <img src="{{ Storage::url($s->imagenSuplemento) }}" alt="{{ $s->nombreSuplemento }}">

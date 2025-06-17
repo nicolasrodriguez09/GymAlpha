@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Membresia;
 use App\Models\Suplemento;
 use App\Models\Spinning;
+use App\Models\Reservar;
 
 class ClienteController extends Controller
 {
@@ -32,10 +33,9 @@ class ClienteController extends Controller
 
     public function spinning()
     {
-        // Suponemos que tienes un método en el User para chequear membresía
-        //$tieneMembresia = Auth::user()->membresiaActiva() ?? false;
+        $tieneMembresia = \App\Models\FacturaMembresia::where('idUsuario', auth()->id())->exists();
+        $clasesSpinning = \App\Models\Spinning::all();
 
-        $clasesSpinning = Spinning::paginate(6);
         return view('cliente.spinning', compact('tieneMembresia','clasesSpinning'));
     }
 
@@ -96,6 +96,30 @@ class ClienteController extends Controller
         session(['carrito' => $cart]);
 
         return back()->with('success','Suplemento agregado al carrito.');
+    }
+
+    public function reservarSpinning(Request $request)
+    {
+        
+        $data = $request->validate([
+            'clase_id' => 'required|exists:spinning,idClase',
+        ]);
+
+        
+        $tiene = FacturaMembresia::where('idUsuario', auth()->id())->exists();
+        if (! $tiene) {
+            return back()->with('error','Debes tener una membresía activa para reservar.');
+        }
+
+        
+        Reservar::create([
+            'idUsuario'  => auth()->id(),
+            'idClaseSpinning'    => $data['clase_id'],
+            'fechaReserva' => now(),
+        ]);
+
+        
+        return back()->with('success','Clase de spinning reservada correctamente.');
     }
 
     
