@@ -123,30 +123,34 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th>correo</th>
-                    <th>telefono</th>
-                    <th>NIT</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idProveedor }}</td>
-                    <td>{{ $item->nombreProveedor }}</td>
-                    <td>{{ $item->emailProveedor }}</td>
-                    <td>{{ $item->telefonoProveedor}}</td>
-                    <td>{{ $item->NITPproveedor}}</td>
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>nombre</th>
+                        <th>correo</th>
+                        <th>telefono</th>
+                        <th>NIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idProveedor }}</td>
+                        <td>{{ $item->nombreProveedor }}</td>
+                        <td>{{ $item->emailProveedor }}</td>
+                        <td>{{ $item->telefonoProveedor}}</td>
+                        <td>{{ $item->NITPproveedor}}</td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+  
+        </div>
+        
         @endif
     </div>
 

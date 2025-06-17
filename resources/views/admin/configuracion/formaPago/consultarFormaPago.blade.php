@@ -123,30 +123,34 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre Banco</th>
-                    <th>nombre Titular</th>
-                    <th>numero de cuenta</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idFormaPago }}</td>
-                    <td>{{ $item->nombreBanco }}</td>
-                    <td>{{ $item->nombreTitular }}</td>
-                    <td>{{ $item->numeroCuenta }}</td>
-                    
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>nombre Banco</th>
+                        <th>nombre Titular</th>
+                        <th>numero de cuenta</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idFormaPago }}</td>
+                        <td>{{ $item->nombreBanco }}</td>
+                        <td>{{ $item->nombreTitular }}</td>
+                        <td>{{ $item->numeroCuenta }}</td>
+                        
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+  
+        </div>
+        
         @endif
     </div>
 

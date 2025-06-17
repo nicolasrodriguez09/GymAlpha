@@ -123,28 +123,32 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>dia</th>
-                    <th>hora</th>
-                    <th>cupos</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idClaseSpinning }}</td>
-                    <td>{{ $item->diaClase }}</td>
-                    <td>{{ $item->horaClase }}</td>
-                    <td>{{ number_format($item->cantidadCuposClase, 0, ',', '.') }}</td>
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>dia</th>
+                        <th>hora</th>
+                        <th>cupos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idClaseSpinning }}</td>
+                        <td>{{ $item->diaClase }}</td>
+                        <td>{{ $item->horaClase }}</td>
+                        <td>{{ number_format($item->cantidadCuposClase, 0, ',', '.') }}</td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+  
+        </div>
+        
         @endif
     </div>
 

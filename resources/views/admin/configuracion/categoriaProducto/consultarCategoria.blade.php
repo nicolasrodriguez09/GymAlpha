@@ -123,28 +123,32 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th>descripcion</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idCategoria }}</td>
-                    <td>{{ $item->nombreCategoria }}</td>
-                    <td>{{ $item->descripcionCategoria }}</td>
-                    
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idCategoria }}</td>
+                        <td>{{ $item->nombreCategoria }}</td>
+                        <td>{{ $item->descripcionCategoria }}</td>
+                        
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+  
+        </div>
+        
         @endif
     </div>
 

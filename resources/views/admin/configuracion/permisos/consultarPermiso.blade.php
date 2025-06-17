@@ -123,32 +123,36 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th>apellido</th>
-                    <th>email</th>
-                    <th>telefono</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idUsuario }}</td>
-                    <td>{{ $item->nombreUsuario }}</td>
-                    <td>{{ $item->apellidosuario }}</td>
-                    <td>{{ $item->emailUsu }}</td>
-                    <td>{{ $item->telefonoUsu }}</td>
-                    
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>nombre</th>
+                        <th>apellido</th>
+                        <th>email</th>
+                        <th>telefono</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idUsuario }}</td>
+                        <td>{{ $item->nombreUsuario }}</td>
+                        <td>{{ $item->apellidosuario }}</td>
+                        <td>{{ $item->emailUsu }}</td>
+                        <td>{{ $item->telefonoUsu }}</td>
+                        
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+  
+        </div>
+        
         @endif
     </div>
 

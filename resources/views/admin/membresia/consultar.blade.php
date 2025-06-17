@@ -80,6 +80,7 @@
     overflow-y: auto;        
     margin-bottom: 20px;     
     }
+    
 
     .image-section {
         flex: 1;
@@ -123,28 +124,32 @@
         </form>
 
         @if($resultados)
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th>descripcion</th>
-                    <th>precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($resultados as $item)
-                <tr>
-                    <td>{{ $item->idMembresia }}</td>
-                    <td>{{ $item->nombreMembresia }}</td>
-                    <td>{{ $item->descripcionMembresia }}</td>
-                    <td>{{ number_format($item->precioMembresia, 0, ',', '.') }}</td>
-                </tr>
-                @empty
-                <tr><td colspan="4">No se encontraron resultados.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                        <th>precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($resultados as $item)
+                    <tr>
+                        <td>{{ $item->idMembresia }}</td>
+                        <td>{{ $item->nombreMembresia }}</td>
+                        <td>{{ $item->descripcionMembresia }}</td>
+                        <td>{{ number_format($item->precioMembresia, 0, ',', '.') }}</td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="4">No se encontraron resultados.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+       
+        </div>
+        
         @endif
     </div>
 
