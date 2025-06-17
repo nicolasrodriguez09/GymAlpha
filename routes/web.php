@@ -41,10 +41,16 @@ Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(
 
 
     Route::get('/cliente/carrito', [App\Http\Controllers\ClienteController::class, 'verCarrito'])->name('cliente.carrito');
+    
     Route::post('/cliente/carrito/{key}/increment',[App\Http\Controllers\ClienteController::class,'incrementItem'])->name('cliente.carrito.increment');
     Route::post('/cliente/carrito/{key}/decrement',[App\Http\Controllers\ClienteController::class,'decrementItem'])->name('cliente.carrito.decrement');
+    Route::delete ('/cliente/carrito',[App\Http\Controllers\ClienteController::class,'clearCart'   ])->name('cliente.carrito.clear');
+    
     Route::post('/cliente/carrito/checkout',[App\Http\Controllers\ClienteController::class,'checkout'])->name('cliente.carrito.checkout');
-    Route::delete('/cliente/carrito',[App\Http\Controllers\ClienteController::class,'clearCart'])->name('cliente.carrito.clear');
+    Route::delete('/cliente/carrito/{key}', [App\Http\Controllers\ClienteController::class,'removeItem'])->name('cliente.carrito.remove');
+    Route::get('/cliente/factura/membresia/{id}',[App\Http\Controllers\ClienteController::class,'facturaMembresia'])->name('cliente.factura.membresia');
+
+
 
     Route::get('/cliente/spinning',[App\Http\Controllers\ClienteController::class,'spinning'])->name('cliente.spinning');
     Route::post('/cliente/spinning/reservar', [App\Http\Controllers\ClienteController::class,'reservarSpinning'])->middleware(['auth','rol:cliente'])->name('cliente.spinning.reservar');

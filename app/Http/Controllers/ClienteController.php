@@ -8,6 +8,9 @@ use App\Models\Membresia;
 use App\Models\Suplemento;
 use App\Models\Spinning;
 use App\Models\Reservar;
+use App\Models\FormaPago;
+use App\Models\FacturaMembresia;   
+use Carbon\Carbon;
 
 class ClienteController extends Controller
 {
@@ -42,12 +45,23 @@ class ClienteController extends Controller
    
     public function verCarrito()
     {
-        $cart  = collect(session('carrito', []));
-        $total = collect($cart)
-            ->sum(fn($item) => $item['precio'] * $item['cantidad']);
+        
+        $cart = session('carrito', []);
 
-        return view('cliente.carrito', compact('cart','total'));
+        
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['precio'] * $item['cantidad'];
+        }
+
+        
+        $formas = FormaPago::all();
+
+        
+        return view('cliente.carrito', compact('cart', 'total', 'formas'));
     }
+
+   
 
     
     public function addMembresia(Request $request)
@@ -61,6 +75,7 @@ class ClienteController extends Controller
 
         // Sólo una membresía a la vez
         $cart['membresia'] = [
+            'id'        => $m->idMembresia,
             'nombre'   => $m->nombreMembresia,
             'precio'   => $m->precioMembresia,
             'cantidad' => 1,
@@ -148,6 +163,16 @@ class ClienteController extends Controller
         return back();
     }
 
+    public function removeItem(string $key)
+    {
+        $cart = session('carrito', []);
+        if (isset($cart[$key])) {
+            unset($cart[$key]);
+            session(['carrito' => $cart]);
+        }
+        return back()->with('success','Producto eliminado del carrito.');
+    }
+
    
     public function clearCart()
     {
@@ -155,18 +180,42 @@ class ClienteController extends Controller
         return back()->with('success','Carrito vaciado.');
     }
 
-   
-    public function checkout()
+    public function facturaMembresia($id)
     {
+        $factura = FacturaMembresia::with(['usuario','membresia','formaPago'])
+                                ->findOrFail($id);
+        return view('cliente.factura_membresia', compact('factura'));
+    }
+
+    
+
+   
+    public function checkout(Request $request)
+    {
+        
+        $request->validate([
+            'forma_pago' => 'required|exists:forma_pago,idFormaPago',
+        ]);
+
         $cart = session('carrito', []);
-        if (empty($cart)) {
-            return back()->with('error','Tu carrito está vacío.');
+        if (! isset($cart['membresia'])) {
+            return back()->with('error','No hay membresía en el carrito.');
         }
 
-        // Aquí iría tu lógica de generación de factura
-        // Por ahora simplemente vaciamos el carrito:
+        $userId = auth()->user()->idUsuario;
+        $factura = FacturaMembresia::create([
+            'fechaCompra' => Carbon::now(),
+            'idUsuario'   => $userId,
+            'idMembresia' => $cart['membresia']['id'],
+            'idFormaPago' => $request->input('forma_pago'),
+        ]);
+
+        // Limpia el carrito
         session()->forget('carrito');
 
-        return back()->with('success','Compra realizada (simulada).');
+        // Redirige a la vista de factura individual
+        return redirect()
+            ->route('cliente.factura.membresia', $factura->idFacturaMembresia)
+            ->with('success','Factura creada correctamente.');
     }
 }
