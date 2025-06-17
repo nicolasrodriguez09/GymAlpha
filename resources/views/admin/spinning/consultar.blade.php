@@ -52,6 +52,11 @@
         border-radius: 6px;
         cursor: pointer;
     }
+    .table-container {
+    max-height: 400px;       
+    overflow-y: auto;        
+    margin-bottom: 20px;     
+    }
 
     table {
         margin-top: 30px;

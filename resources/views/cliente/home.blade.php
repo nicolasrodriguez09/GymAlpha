@@ -5,6 +5,8 @@
     .container {
         display: flex;
         height: 100vh;
+        margin: 0;
+        padding: 0;
     }
 
     .form-section {
@@ -53,45 +55,45 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
+        
     }
 
     .image-section img {
-        width: auto;
-        max-height: 90%;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
         max-width: 100%;
-        object-fit: contain;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        object-fit: cover;
+        border-radius: 0px;
+        
     }
 </style>
 
 <div class="container">
     <!-- Sección de bienvenida -->
     <div class="form-section">
-        <h1>Bienvenido al Gym</h1>
+        <h1 style="aling-text:center;">¡Bienvenido a GymAlpha!</h1>
 
         <div class="info-icon">
             <a href="{{ route('cliente.carrito') }}" style="margin-right: 30px;" title="Inicio">
-                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 50px; height: 50px;">
+                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 100px; height: 100px;">
             </a>
             
-            <span style="font-size: 1.1rem;">carrito de compras.</span>
+            
         </div>
 
-        <h3>
-            En GymAlpha nos enfocamos en ofrecerte una experiencia completa para tu bienestar físico.
-        </h3>
+        <h2>
+            Tu entrenamiento, tus suplementos y tus clases… <br>todo en un solo lugar.
+        </h2>
 
         <p>
-            Desde la gestión de tus membresías hasta el acceso a suplementos de calidad y clases especializadas, todo está al alcance de un clic.<br><br>
-            Contamos con entrenadores certificados, rutinas personalizadas y una plataforma intuitiva para que alcances tus objetivos de manera eficaz y segura.
+            Elige tu plan de membresía, compra suplementos de calidad y reserva tus clases en segundos, sin complicaciones. <br> Empieza hoy y entrena a tu ritmo.
         </p>
     </div>
 
     <!-- Imagen -->
     <div class="image-section">
-        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos">
+        <img src="{{ asset('images/home.png') }}" alt="Imagen suplementos">
     </div>
 </div>
 @endsection

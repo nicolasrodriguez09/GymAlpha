@@ -75,6 +75,11 @@
         background-color: #001e31;
         color: white;
     }
+    .table-container {
+    max-height: 400px;       
+    overflow-y: auto;        
+    margin-bottom: 20px;     
+    }
 
     .image-section {
         flex: 1;

@@ -34,6 +34,11 @@
         width: 250px;
         border-radius: 4px;
     }
+    .table-container {
+    max-height: 400px;       
+    overflow-y: auto;        
+    margin-bottom: 20px;     
+    }
     table {
         margin-top: 20px;
         width: 100%;
@@ -97,30 +102,33 @@
             <button type="submit" class="submit-btn">🔍</button>
         </form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th>descripcion</th>
-                    <th>cantidad</th>
-                    <th>precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($stocks as $s)
+        <div class="table-container">
+
+            <table>
+                <thead>
                     <tr>
-                        <td>{{ $s->idSuplemento }}</td>
-                        <td>{{ $s->nombreSuplemento }}</td>
-                        <td>{{ $s->descripcionSuplemento }}</td>
-                        <td>{{ $s->stock }}</td>
-                        <td>{{ number_format($s->precioSuplemento,2,',','.') }}</td>
+                        <th>codigo</th>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                        <th>cantidad</th>
+                        <th>precio</th>
                     </tr>
-                @empty
-                    <tr><td colspan="5">No hay registros.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($stocks as $s)
+                        <tr>
+                            <td>{{ $s->idSuplemento }}</td>
+                            <td>{{ $s->nombreSuplemento }}</td>
+                            <td>{{ $s->descripcionSuplemento }}</td>
+                            <td>{{ $s->stock }}</td>
+                            <td>{{ number_format($s->precioSuplemento,2,',','.') }}</td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="5">No hay registros.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="image-section">
