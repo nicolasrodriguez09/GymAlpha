@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Administrador</title>
+    <title>Panel cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{-- Estilos personalizados para el admin --}}
@@ -62,6 +62,10 @@
             <!-- Ícono mancuerna como acceso a home -->
             <a href="{{ route('cliente.home') }}" style="margin-right: 30px;" title="Inicio">
                 <img src="{{ asset('images/mancuerna.png') }}" alt="Inicio" style="width: 50px; height: 50px;">
+            </a>
+
+            <a href="{{ route('cliente.carrito') }}" style="margin-right: 30px;" title="Inicio">
+                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 50px; height: 50px;">
             </a>
 
             <!-- Navegación -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Membresia;
 use App\Models\Suplemento;
 use App\Models\Spinning;
@@ -31,21 +32,27 @@ class ClienteController extends Controller
 
     public function suplementos()
     {
+        
          $suplementos = Suplemento::paginate(9);
          return view('cliente.suplementos', compact('suplementos'));
-
-        
         
     }
-
 
     public function spinning()
     {
-        $tieneMembresia = \App\Models\FacturaMembresia::where('idUsuario', auth()->id())->exists();
-        $clasesSpinning = \App\Models\Spinning::all();
+        // Determina si tiene membresía
+        $userId          = auth()->user()->idUsuario;
+        $tieneMembresia  = FacturaMembresia::where('idUsuario', $userId)->exists();
 
+        // Obtén todas las clases disponibles
+        $clasesSpinning = Spinning::all();
+
+        //Pásalas a la vista junto con el flag de membresía
         return view('cliente.spinning', compact('tieneMembresia','clasesSpinning'));
     }
+
+
+    
 
    
     public function verCarrito()
@@ -98,11 +105,11 @@ class ClienteController extends Controller
             'suplemento_id' => 'required|exists:suplemento,idSuplemento',
         ]);
 
-        // 1) Busca el inventario de ese suplemento (asegura que exista stock)
+        //Busca el inventario de ese suplemento (asegura que exista stock)
         $inv = Inventario::where('idSuplemento', $request->suplemento_id)
                          ->firstOrFail();
 
-        // 2) Usamos idInventario como clave única en el carrito
+        //Usamos idInventario como clave única en el carrito
         $key = 'supl_'.$inv->idInventario;
         $cart = session('carrito', []);
 
@@ -125,25 +132,34 @@ class ClienteController extends Controller
 
     public function reservarSpinning(Request $request)
     {
-        
         $data = $request->validate([
-            'clase_id' => 'required|exists:spinning,idClase',
+            'clase_id' => 'required|exists:clase_spinning,idClaseSpinning',
         ]);
 
-        
-        $tiene = FacturaMembresia::where('idUsuario', auth()->id())->exists();
-        if (! $tiene) {
+        $userId = auth()->user()->idUsuario;
+        // chequea membresía
+        if (! FacturaMembresia::where('idUsuario', $userId)->exists()) {
             return back()->with('error','Debes tener una membresía activa para reservar.');
         }
 
-        
-        Reservar::create([
-            'idUsuario'  => auth()->id(),
-            'idClaseSpinning'    => $data['clase_id'],
-            'fechaReserva' => now(),
-        ]);
+        // carga la clase
+        $clase = Spinning::findOrFail($data['clase_id']);
+        if ($clase->cantidadCuposClase < 1) {
+            return back()->with('error','Lo siento, ya no quedan cupos para esa clase.');
+        }
 
-        
+        DB::transaction(function() use ($clase, $userId) {
+            // decrementa un cupo
+            $clase->decrement('cantidadCuposClase');
+
+            // crea la reserva
+            Reservar::create([
+                'idUsuario'       => $userId,
+                'idClaseSpinning' => $clase->idClaseSpinning,
+                'fechaReserva'    => now(),
+            ]);
+        });
+
         return back()->with('success','Clase de spinning reservada correctamente.');
     }
 

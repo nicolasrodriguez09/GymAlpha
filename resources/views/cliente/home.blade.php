@@ -74,13 +74,7 @@
     <div class="form-section">
         <h1 style="aling-text:center;">¡Bienvenido a GymAlpha!</h1>
 
-        <div class="info-icon">
-            <a href="{{ route('cliente.carrito') }}" style="margin-right: 30px;" title="Inicio">
-                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 100px; height: 100px;">
-            </a>
-            
-            
-        </div>
+        
 
         <h2>
             Tu entrenamiento, tus suplementos y tus clases… <br>todo en un solo lugar.

@@ -14,5 +14,7 @@ class Spinning extends Model
         'horaClase',
         'cantidadCuposClase'
     ]; 
+
+    
 }
 

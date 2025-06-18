@@ -53,7 +53,7 @@ Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(
 
 
     Route::get('/cliente/spinning',[App\Http\Controllers\ClienteController::class,'spinning'])->name('cliente.spinning');
-    Route::post('/cliente/spinning/reservar', [App\Http\Controllers\ClienteController::class,'reservarSpinning'])->middleware(['auth','rol:cliente'])->name('cliente.spinning.reservar');
+    Route::post('/cliente/spinning/reservar', [App\Http\Controllers\ClienteController::class,'reservarSpinning'])->name('cliente.spinning.reservar');
 
 
 });

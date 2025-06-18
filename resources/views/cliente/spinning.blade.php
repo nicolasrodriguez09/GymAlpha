@@ -1,4 +1,3 @@
-{{-- resources/views/cliente/spinning.blade.php --}}
 @extends('layouts.cliente')
 
 @section('content')
@@ -29,9 +28,13 @@
         margin-bottom: 20px;
         text-transform: lowercase;
     }
-    .message a {
+    .message-success {
+        background-color: #00c853;
         color: white;
-        text-decoration: underline;
+        padding: 12px 20px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-transform: lowercase;
     }
     .form-group {
         margin-bottom: 20px;
@@ -68,14 +71,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
+
     .image-section img {
         width: 100%;
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 0px;
+        
     }
 </style>
 
@@ -83,14 +89,27 @@
     <div class="form-section">
         <h2>clases de spinning</h2>
 
-        {{-- Si no tiene membresía activa --}}
+        {{-- Mostrar mensajes flash --}}
+        @if(session('error'))
+            <div class="message">{{ session('error') }}</div>
+        @endif
+        @if(session('success'))
+            <div class="message-success">{{ session('success') }}</div>
+        @endif
+
+        {{-- Validación de clase_id --}}
+        @if($errors->has('clase_id'))
+            <div class="message">{{ $errors->first('clase_id') }}</div>
+        @endif
+
+        {{-- Sin membresía activa --}}
         @unless($tieneMembresia)
             <div class="message">
                 no puedes reservar clases sin una membresía activa.
-                <a href="{{ route('cliente.membresia') }}">contrata aquí</a>
+                <a href="{{ route('cliente.membresias') }}">contrata aquí</a>
             </div>
         @else
-            {{-- Si tiene membresía, mostramos el formulario --}}
+            {{-- Formulario de reserva --}}
             <form action="{{ route('cliente.spinning.reservar') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -98,8 +117,8 @@
                     <select name="clase_id" id="clase_id" required>
                         <option value="">-- elige una --</option>
                         @foreach($clasesSpinning as $clase)
-                            <option value="{{ $clase->idClase }}">
-                                {{ $clase->fecha_hora->format('Y-m-d H:i') }} – {{ $clase->instructor }}
+                            <option value="{{ $clase->idClaseSpinning }}">
+                                {{ $clase->diaClase }} – {{ $clase->horaClase }} (cupos: {{ $clase->cantidadCuposClase }})
                             </option>
                         @endforeach
                     </select>
@@ -110,7 +129,7 @@
     </div>
 
     <div class="image-section">
-        <img src="{{ asset('images/spinning_banner.png') }}" alt="Clase Spinning">
+        <img src="{{ asset('images/spinning.png') }}" alt="Clase Spinning">
     </div>
 </div>
 @endsection
