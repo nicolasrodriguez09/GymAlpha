@@ -23,24 +23,12 @@
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 30px;
-        text-align: left;
+        text-align: center;
     }
 
-    .form-section h3 {
+    .form-section h2 {
         font-size: 1.3rem;
         margin-bottom: 20px;
-    }
-
-    .info-icon {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .info-icon img {
-        width: 32px;
-        height: 32px;
-        margin-right: 10px;
     }
 
     .form-section p {
@@ -51,41 +39,55 @@
 
     .image-section {
         flex: 1;
-        background-color: #002d72;
+        background-color: #013a54;
         display: flex;
         justify-content: center;
         align-items: center;
-        
     }
 
     .image-section img {
         width: 100%;
         height: 100%;
-        max-height: 100%;
-        max-width: 100%;
         object-fit: cover;
-        border-radius: 0px;
-        
+    }
+
+    /* Responsive para móviles/tabletas */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section,
+        .image-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .image-section {
+            height: 200px; /* ajustable */
+        }
+        .form-section h1 {
+            font-size: 2rem;
+        }
+        .form-section h2 {
+            font-size: 1.1rem;
+        }
     }
 </style>
 
 <div class="container">
-    <!-- Sección de bienvenida -->
+    <!-- Sección de bienvenida (izquierda en desktop) -->
     <div class="form-section">
-        <h1 style="aling-text:center;">¡Bienvenido a GymAlpha!</h1>
-
-        
-
+        <h1>¡Bienvenido a GymAlpha!</h1>
         <h2>
             Tu entrenamiento, tus suplementos y tus clases… <br>todo en un solo lugar.
         </h2>
-
         <p>
-            Elige tu plan de membresía, compra suplementos de calidad y reserva tus clases en segundos, sin complicaciones. <br> Empieza hoy y entrena a tu ritmo.
+            Elige tu plan de membresía, compra suplementos de calidad y reserva tus clases en segundos, sin complicaciones. <br>
+            Empieza hoy y entrena a tu ritmo.
         </p>
     </div>
 
-    <!-- Imagen -->
+    <!-- Imagen (derecha en desktop) -->
     <div class="image-section">
         <img src="{{ asset('images/home.png') }}" alt="Imagen suplementos">
     </div>

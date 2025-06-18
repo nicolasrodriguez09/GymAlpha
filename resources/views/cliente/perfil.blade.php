@@ -4,12 +4,12 @@
 <style>
     .container {
         display: flex;
-        height: 100vh;   /* ocupa toda la pantalla */
+        height: 100vh;
         margin: 0;
         padding: 0;
     }
     .form-section {
-        flex: 1;                         /* mitad de ancho */
+        flex: 1;
         background-color: #013a54;
         color: white;
         display: flex;
@@ -30,6 +30,8 @@
         justify-content: space-between;
         margin: 8px 0;
         text-transform: lowercase;
+        width: 100%;
+        max-width: 400px;
     }
     .form-section .field .label {
         font-weight: bold;
@@ -46,23 +48,59 @@
         align-self: center;
         margin-top: 30px;
         text-decoration: none;
+        transition: background-color 0.2s;
+    }
+    .submit-btn:hover {
+        background-color: #00b24a;
     }
 
     .image-section {
-        flex: 1;                         /* mitad de ancho */
-        background-color: #002d72;
-        display: flex;                  /* centra la imagen */
+        flex: 1;
+        background-color: #013a54;
+        display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;               /* recorta lo que sobrepase */
+        overflow: hidden;
         padding: 0;
         box-sizing: border-box;
     }
     .image-section img {
-        width: 100%;                    /* se ajusta al ancho del contenedor */
-        height: 100%;                   /* y al alto */
-        object-fit: cover;              /* recorta proporcionalmente */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
+    }
+
+    
+    @media (max-width: 1024px) {
+        .container {
+            height: auto;
+        }
+    }
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section,
+        .image-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .image-section {
+            height: 200px;
+        }
+        .form-section .field {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .form-section .field div {
+            width: 100%;
+        }
+        .submit-btn {
+            width: 100%;
+            max-width: 300px;
+        }
     }
 </style>
 

@@ -27,24 +27,23 @@
         text-transform: lowercase;
         text-align: center;
     }
-    .message-success {
-        background-color: #00c853;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 6px;
-        margin-bottom: 20px;
-        text-transform: lowercase;
-    }
+    .message-success,
     .message-error {
-        background-color: #ff5252;
         color: white;
         padding: 10px 20px;
         border-radius: 6px;
         margin-bottom: 20px;
         text-transform: lowercase;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
     }
+    .message-success { background-color: #00c853; }
+    .message-error   { background-color: #ff5252; }
     .form-group {
         margin-bottom: 20px;
+        width: 100%;
+        max-width: 400px;
         text-transform: lowercase;
     }
     .form-group label {
@@ -72,10 +71,15 @@
         text-transform: lowercase;
         align-self: center;
         margin-top: 20px;
+        transition: background-color 0.2s;
     }
+    .btn-save:hover {
+        background-color: #00b24a;
+    }
+
     .image-section {
         flex: 1;
-        background-color: #002d72;
+        background-color: #013a54;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -88,6 +92,45 @@
         height: 100%;
         object-fit: cover;
         display: block;
+    }
+
+    /* —— Responsive para tabletas y móviles —— */
+    @media (max-width: 1024px) {
+        .container {
+            height: auto;
+        }
+    }
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section,
+        .image-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .image-section {
+            height: 200px;
+        }
+        .form-group {
+            max-width: 100%;
+        }
+        .btn-save {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    @media (max-width: 480px) {
+        .form-section h2 {
+            font-size: 1.8rem;
+        }
+        .form-group input {
+            padding: 8px;
+        }
+        .btn-save {
+            padding: 10px 20px;
+        }
     }
 </style>
 

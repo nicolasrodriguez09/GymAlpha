@@ -1,9 +1,11 @@
-
 @extends('layouts.cliente')
 
 @section('content')
 <style>
-    .container { display: flex; height: 100vh; }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
     .form-section {
         flex: 1;
         background-color: #013a54;
@@ -19,6 +21,7 @@
         font-weight: bold;
         margin-bottom: 40px;
         text-transform: lowercase;
+        text-align: center;
     }
     .cards-container {
         display: flex;
@@ -69,6 +72,34 @@
         color: white;
         margin-bottom: 10px;
         text-transform: lowercase;
+    }
+
+    /* —— Responsive para tabletas y móviles —— */
+    @media (max-width: 1024px) {
+        .card {
+            width: calc(33.333% - 20px);
+        }
+    }
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .cards-container {
+            gap: 15px;
+        }
+        .card {
+            width: calc(50% - 15px);
+        }
+    }
+    @media (max-width: 480px) {
+        .card {
+            width: 100%;
+        }
     }
 </style>
 

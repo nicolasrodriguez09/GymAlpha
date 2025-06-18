@@ -19,13 +19,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; 
         }
-        .navbar a {
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .navbar-left a {
             color: white;
-            margin-right: 20px;
+            margin: 0 10px;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
+        }
+        .navbar-left img {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            max-width: 100%;
+            height: auto;
         }
         .navbar a:hover,
         .navbar a.active {
@@ -33,7 +46,7 @@
             text-decoration: none;
         }
 
-        /* —————– Dropdown de usuario —————– */
+        
         .dropdown {
             position: relative;
             display: inline-block;
@@ -82,18 +95,44 @@
         .dropdown:hover .dropbtn {
             color: #00ff88;
         }
+
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .navbar-left, .navbar-right {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+            .navbar-left a,
+            .navbar-left img {
+                margin: 5px;
+            }
+            .dropbtn {
+                font-size: 0.9rem;
+            }
+            .dropdown-content {
+                right: 10px;
+                left: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <div class="navbar-left" style="display: flex; align-items: center;">
+        <div class="navbar-left">
             <!-- Ícono mancuerna como acceso a home -->
             <a href="{{ route('cliente.home') }}" title="Inicio">
-                <img src="{{ asset('images/mancuerna.png') }}" alt="Inicio" style="width: 50px; height: 50px;">
+                <img src="{{ asset('images/mancuerna.png') }}" alt="Inicio">
             </a>
             <a href="{{ route('cliente.carrito') }}" title="Carrito">
-                <img src="{{ asset('images/cart.png') }}" alt="Carrito" style="width: 50px; height: 50px;">
+                <img src="{{ asset('images/cart.png') }}" alt="Carrito">
             </a>
 
             <a href="{{ route('cliente.membresias') }}" class="{{ request()->routeIs('cliente.membresias') ? 'active' : '' }}">Membresía</a>

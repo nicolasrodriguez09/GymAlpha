@@ -2,7 +2,10 @@
 
 @section('content')
 <style>
-    .container { display: flex; height: 100vh; }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
     .form-section {
         flex: 1;
         background-color: #013a54;
@@ -19,23 +22,21 @@
         font-weight: bold;
         margin-bottom: 20px;
         text-transform: lowercase;
+        text-align: center;
     }
-    .message {
-        background-color: #ff5252;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 6px;
-        margin-bottom: 20px;
-        text-transform: lowercase;
-    }
+    .message,
     .message-success {
-        background-color: #00c853;
         color: white;
         padding: 12px 20px;
         border-radius: 6px;
         margin-bottom: 20px;
         text-transform: lowercase;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
     }
+    .message { background-color: #ff5252; }
+    .message-success { background-color: #00c853; }
     .form-group {
         margin-bottom: 20px;
         width: 100%;
@@ -64,24 +65,47 @@
         cursor: pointer;
         color: white;
         text-transform: lowercase;
+        transition: background-color 0.2s;
+    }
+    .submit-btn:hover:not(:disabled) {
+        background-color: #00b24a;
+    }
+    .submit-btn:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+        opacity: 0.6;
     }
     .image-section {
         flex: 1;
-        background-color: #002d72;
+        background-color: #013a54;
         display: flex;
         justify-content: center;
         align-items: center;
-        
     }
-
     .image-section img {
         width: 100%;
         height: 100%;
-        max-height: 100%;
-        max-width: 100%;
         object-fit: cover;
-        border-radius: 0px;
-        
+    }
+
+    
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section,
+        .image-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .image-section {
+            height: 200px;
+        }
+        .submit-btn {
+            width: 100%;
+            max-width: 300px;
+        }
     }
 </style>
 
@@ -89,7 +113,7 @@
     <div class="form-section">
         <h2>clases de spinning</h2>
 
-        {{-- Mostrar mensajes flash --}}
+        
         @if(session('error'))
             <div class="message">{{ session('error') }}</div>
         @endif
@@ -97,16 +121,16 @@
             <div class="message-success">{{ session('success') }}</div>
         @endif
 
-        {{-- Validación de clase_id --}}
+        
         @if($errors->has('clase_id'))
             <div class="message">{{ $errors->first('clase_id') }}</div>
         @endif
 
-        {{-- Sin membresía activa --}}
+        
         @unless($tieneMembresia)
             <div class="message">
                 no puedes reservar clases sin una membresía activa.
-                <a href="{{ route('cliente.membresias') }}">contrata aquí</a>
+                <a href="{{ route('cliente.membresias') }}" style="color:#00ff88; text-decoration:underline;">contrata aquí</a>
             </div>
         @else
             {{-- Formulario de reserva --}}

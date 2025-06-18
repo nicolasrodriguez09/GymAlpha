@@ -1,9 +1,11 @@
-
 @extends('layouts.cliente')
 
 @section('content')
 <style>
-    .container { display: flex; height: 100vh; }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
     .form-section {
         flex: 1;
         background-color: #013a54;
@@ -19,20 +21,19 @@
         font-weight: bold;
         margin-bottom: 40px;
         text-transform: lowercase;
+        text-align: center;
     }
     .cards-container {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        column-gap: 20px;
-        row-gap:    20px;
-        justify-content: center;
+        gap: 20px;
+        width: 100%;
         padding: 0 20px;
     }
     .card {
         background-color: #001e31;
         border: 4px solid #001e31;
         border-radius: 20px;
-        width: 160px;
         overflow: hidden;
         text-align: center;
         transition: border-color 0.2s;
@@ -63,13 +64,10 @@
         font-size: 0.85rem;
         margin-bottom: 10px;
     }
-    .card-content .price {
-        margin-bottom: 10px;
-        text-transform: lowercase;
-    }
+    .card-content .price,
     .card-content .stock {
-        font-size: 0.85rem;
         margin-bottom: 10px;
+        font-size: 0.85rem;
         text-transform: lowercase;
     }
     .submit-btn {
@@ -80,7 +78,6 @@
         border-radius: 8px;
         cursor: pointer;
         color: white;
-        margin-bottom: 10px;
         text-transform: lowercase;
     }
     .submit-btn:disabled {
@@ -88,13 +85,36 @@
         cursor: not-allowed;
         opacity: 0.6;
     }
+
+    /* —— Responsive Tablets (<=1024px): 2 columnas —— */
+    @media (max-width: 1024px) {
+        .cards-container {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    /* —— Responsive Móviles (<=768px): 1 columna y apilar contenedor —— */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+        }
+        .form-section {
+            width: 100%;
+            padding: 20px;
+        }
+        .cards-container {
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 0 10px;
+        }
+    }
 </style>
 
 <div class="container">
     <div class="form-section">
         <h2>suplementos</h2>
         @if(session('success'))
-            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px; text-transform: lowercase;">
+            <div style="background-color: #00c853; color: white; padding: 10px 20px; border-radius: 6px; margin-bottom: 20px; text-transform: lowercase; text-align: center;">
                 {{ session('success') }}
             </div>
         @endif
