@@ -32,6 +32,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(){
+
+    Route::get('/cliente/perfil', [App\Http\Controllers\ClienteController::class, 'perfil'])->name('cliente.perfil');
+    Route::get('/cliente/perfil/edit',[App\Http\Controllers\ClienteController::class, 'editPerfil'])->name('cliente.perfil.edit');
+    Route::put('/cliente/perfil', [App\Http\Controllers\ClienteController::class, 'updatePerfil'])->name('cliente.perfil.update');
+
     Route::get('/cliente/home', [App\Http\Controllers\ClienteController::class, 'home'])->name('cliente.home'); 
     Route::get('/cliente/membresias', [App\Http\Controllers\ClienteController::class, 'membresias'])->name('cliente.membresias');
     Route::post('/cliente/carrito/membresia',[App\Http\Controllers\ClienteController::class, 'addMembresia'])->name('cliente.carrito.addMembresia');

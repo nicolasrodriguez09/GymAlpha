@@ -17,6 +17,32 @@ use Carbon\Carbon;
 
 class ClienteController extends Controller
 {
+    public function perfil()
+    {
+        $user = auth()->user();
+        return view('cliente.perfil', compact('user'));
+    }
+
+    public function editPerfil()
+    {
+        $user = Auth::user();
+        return view('cliente.perfil_edit', compact('user'));
+    }
+    public function updatePerfil(Request $request)
+    {
+        $user = Auth::user();
+
+        $data = $request->validate([
+            'nombreUsu' => 'required|string|max:255',
+            'apellidoUsu' => 'nullable|string|max:255',
+            'numero_identificacion'=> 'nullable|string|max:50',
+            'telefonoUsu' => 'nullable|string|max:20',
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('cliente.perfil')->with('success','Perfil actualizado con éxito.');
+    }
     
     public function home()
     {

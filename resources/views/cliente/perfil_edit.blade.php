@@ -1,0 +1,141 @@
+@extends('layouts.cliente')
+
+@section('content')
+<style>
+    .container { display: flex; min-height: 100vh; }
+    .form-section {
+        flex: 1;
+        background-color: #013a54;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        overflow-y: auto;
+    }
+    .form-section h2 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-transform: lowercase;
+        text-align: center;
+    }
+    .message-success {
+        background-color: #00c853;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-transform: lowercase;
+    }
+    .message-error {
+        background-color: #ff5252;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-transform: lowercase;
+    }
+    .form-group {
+        margin-bottom: 20px;
+        text-transform: lowercase;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ffffff33;
+        background-color: #001e31;
+        color: white;
+    }
+    .btn-save {
+        background-color: #00c853;
+        padding: 12px 40px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        text-transform: lowercase;
+        align-self: center;
+        margin-top: 20px;
+    }
+    .image-section {
+        flex: 1;
+        background-color: #002d72;
+    }
+</style>
+
+<div class="container">
+    <div class="form-section">
+        <h2>editar perfil</h2>
+
+        @if(session('success'))
+            <div class="message-success">{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="message-error">{{ session('error') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('cliente.perfil.update') }}">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="nombreUsu">nombre</label>
+                <input type="text"
+                       id="nombreUsu"
+                       name="nombreUsu"
+                       value="{{ old('nombreUsu', $user->nombreUsu) }}"
+                       required>
+                @error('nombreUsu')
+                    <div class="message-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="apellidoUsu">apellido</label>
+                <input type="text"
+                       id="apellidoUsu"
+                       name="apellidoUsu"
+                       value="{{ old('apellidoUsu', $user->apellidoUsu) }}">
+                @error('apellidoUsu')
+                    <div class="message-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="numero_identificacion">número identificación</label>
+                <input type="text"
+                       id="numero_identificacion"
+                       name="numero_identificacion"
+                       value="{{ old('numero_identificacion', $user->numero_identificacion) }}">
+                @error('numero_identificacion')
+                    <div class="message-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="telefonoUsu">teléfono</label>
+                <input type="text"
+                       id="telefonoUsu"
+                       name="telefonoUsu"
+                       value="{{ old('telefonoUsu', $user->telefonoUsu) }}">
+                @error('telefonoUsu')
+                    <div class="message-error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn-save">guardar cambios</button>
+        </form>
+    </div>
+    <div class="image-section">
+        {{-- Bloque derecho vacío --}}
+    </div>
+</div>
+@endsection
