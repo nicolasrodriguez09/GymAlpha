@@ -1,5 +1,5 @@
 {{-- resources/views/cliente/perfil_edit.blade.php --}}
-@extends('layouts.cliente')
+@extends('layouts.admin')
 
 @section('content')
 <style>
@@ -102,7 +102,7 @@
             <div class="message-error">{{ session('error') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('cliente.perfil.update') }}">
+        <form method="POST" action="{{ route('admin.perfil.update') }}">
             @csrf
             @method('PUT')
 

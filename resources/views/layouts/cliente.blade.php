@@ -108,7 +108,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="{{ route('cliente.perfil') }}">perfil</a>
-                    <a href="{{ route('cliente.facturas') }}">ver facturas</a>
+                    
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit">cerrar sesión</button>

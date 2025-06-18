@@ -53,6 +53,54 @@
             border-radius: 15px;
             text-align: center;
         }
+
+        /* ————— Dropdown de usuario ————— */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: lowercase;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #001F33;
+            min-width: 160px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+        .dropdown-content a,
+        .dropdown-content form button {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            text-transform: lowercase;
+            cursor: pointer;
+        }
+        .dropdown-content a:hover,
+        .dropdown-content form button:hover {
+            background-color: #00ff88;
+            color: #001F33;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover .dropbtn {
+            color: #00ff88;
+        }
     </style>
 </head>
 <body>
@@ -72,13 +120,18 @@
         </div>
 
         <div class="navbar-right">
-            <a 
-            href="{{ route('admin.profile.edit') }}" 
-            class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}"
-            style="color:white; text-decoration:none; font-weight:bold;"
-            >
-            {{ Auth::user()->name ?? Auth::user()->emailUsu }} 🟢
-            </a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    {{ Auth::user()->name ?? Auth::user()->emailUsu }} ⌄
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{ route('admin.perfil') }}">perfil</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">log out</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

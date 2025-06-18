@@ -69,6 +69,10 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     //rutas con verificacion de roles empezando por admin home
     Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'home'])->name('admin.home');
 
+    Route::get('/admin/perfil', [App\Http\Controllers\AdminController::class, 'perfil'])->name('admin.perfil');
+    Route::get('/admin/perfil/edit',[App\Http\Controllers\AdminController::class, 'editPerfil'])->name('admin.perfil.edit');
+    Route::put('/admin/perfil', [App\Http\Controllers\AdminController::class, 'updatePerfil'])->name('admin.perfil.update');
+
     Route::prefix('admin')->name('admin.')->group(function(){
         // Perfil de admin (reusa Breeze)
         Route::get('profile',   [App\Http\Controllers\ProfileController::class, 'edit'])
