@@ -9,7 +9,9 @@ use App\Models\Suplemento;
 use App\Models\Spinning;
 use App\Models\Reservar;
 use App\Models\FormaPago;
-use App\Models\FacturaMembresia;   
+use App\Models\FacturaMembresia;  
+use App\Models\FacturaSuplemento; 
+use App\Models\Inventario;
 use Carbon\Carbon;
 
 class ClienteController extends Controller
@@ -29,8 +31,11 @@ class ClienteController extends Controller
 
     public function suplementos()
     {
-        $suplementos = Suplemento::paginate(9);
-        return view('cliente.suplementos', compact('suplementos'));
+         $suplementos = Suplemento::paginate(9);
+         return view('cliente.suplementos', compact('suplementos'));
+
+        
+        
     }
 
 
@@ -93,23 +98,28 @@ class ClienteController extends Controller
             'suplemento_id' => 'required|exists:suplemento,idSuplemento',
         ]);
 
-        $s = Suplemento::findOrFail($request->suplemento_id);
-        $key = 'supl_'.$s->idSuplemento;
+        // 1) Busca el inventario de ese suplemento (asegura que exista stock)
+        $inv = Inventario::where('idSuplemento', $request->suplemento_id)
+                         ->firstOrFail();
 
+        // 2) Usamos idInventario como clave única en el carrito
+        $key = 'supl_'.$inv->idInventario;
         $cart = session('carrito', []);
 
         if (isset($cart[$key])) {
+            // Ya estaba: solo incrementamos cantidad
             $cart[$key]['cantidad']++;
         } else {
+            
             $cart[$key] = [
-                'nombre'   => $s->nombreSuplemento,
-                'precio'   => $s->precioSuplemento,
+                'nombre' => $inv->suplemento->nombreSuplemento,
+                'precio' => $inv->suplemento->precioSuplemento,
                 'cantidad' => 1,
+                'idInventario' => $inv->idInventario,
             ];
         }
 
         session(['carrito' => $cart]);
-
         return back()->with('success','Suplemento agregado al carrito.');
     }
 
@@ -180,11 +190,11 @@ class ClienteController extends Controller
         return back()->with('success','Carrito vaciado.');
     }
 
-    public function facturaMembresia($id)
+    public function verFacturas(Request $request)
     {
-        $factura = FacturaMembresia::with(['usuario','membresia','formaPago'])
-                                ->findOrFail($id);
-        return view('cliente.factura_membresia', compact('factura'));
+        // Recupera del flash data el array de facturas
+        $invoices = session('invoices', []);
+        return view('cliente.facturas', compact('invoices'));
     }
 
     
@@ -192,30 +202,71 @@ class ClienteController extends Controller
    
     public function checkout(Request $request)
     {
-        
         $request->validate([
             'forma_pago' => 'required|exists:forma_pago,idFormaPago',
         ]);
 
         $cart = session('carrito', []);
-        if (! isset($cart['membresia'])) {
-            return back()->with('error','No hay membresía en el carrito.');
+        if (empty($cart)) {
+            return back()->with('error', 'El carrito está vacío.');
         }
 
-        $userId = auth()->user()->idUsuario;
-        $factura = FacturaMembresia::create([
-            'fechaCompra' => Carbon::now(),
-            'idUsuario'   => $userId,
-            'idMembresia' => $cart['membresia']['id'],
-            'idFormaPago' => $request->input('forma_pago'),
-        ]);
+        $invoices = [];
 
-        // Limpia el carrito
+        // 1) Factura de membresía
+        if (isset($cart['membresia'])) {
+            $m = $cart['membresia'];
+            $fm = FacturaMembresia::create([
+                'fechaCompra' => Carbon::now(),
+                'idUsuario'   => auth()->user()->idUsuario,
+                'idMembresia' => $m['id'],
+                'idFormaPago' => $request->input('forma_pago'),
+            ]);
+            $invoices[] = [
+                'tipo'    => 'membresia',
+                'factura' => $fm,
+            ];
+        }
+
+        // 2) Factura de suplementos (única para todos los supl_*)
+        $suplItems = collect($cart)->filter(fn($item, $key) => str_starts_with($key, 'supl_'));
+
+        if ($suplItems->isNotEmpty()) {
+            // Extraemos el idInventario de la clave "supl_{idInventario}"
+            $firstKey = $suplItems->keys()->first();            // ej: "supl_42"
+            [, $idInventario] = explode('_', $firstKey, 2);
+            $idInventario = (int) $idInventario;
+
+            $fs = FacturaSuplemento::create([
+                'fechaCompra'  => Carbon::now(),
+                'idUsuario'    => auth()->user()->idUsuario,
+                'idInventario' => $idInventario,
+                'idFormaPago'  => $request->input('forma_pago'),
+            ]);
+
+            // Preparamos sólo los campos que realmente necesitas mostrar
+            $itemsForView = $suplItems->map(fn($item) => [
+                'nombre'   => $item['nombre'],
+                'precio'   => $item['precio'],
+                'cantidad' => $item['cantidad'],
+            ])->values()->all();
+
+            $invoices[] = [
+                'tipo'    => 'suplemento',
+                'factura' => $fs,
+                'items'   => $itemsForView,
+            ];
+        }
+
+        // 3) Limpia todo el carrito
         session()->forget('carrito');
 
-        // Redirige a la vista de factura individual
+        // 4) Redirige a la vista unificada de facturas
         return redirect()
-            ->route('cliente.factura.membresia', $factura->idFacturaMembresia)
-            ->with('success','Factura creada correctamente.');
+            ->route('cliente.facturas')
+            ->with([
+                'invoices' => $invoices,
+                'success'  => 'Compra simulada registrada con éxito.'
+            ]);
     }
 }

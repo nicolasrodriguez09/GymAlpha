@@ -1,4 +1,3 @@
-
 @extends('layouts.cliente')
 
 @section('content')
@@ -25,7 +24,6 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
         column-gap: 20px;
         row-gap:    20px;
-        
         justify-content: center;
         padding: 0 20px;
     }
@@ -33,11 +31,12 @@
         background-color: #001e31;
         border: 4px solid #001e31;
         border-radius: 20px;
-        
         width: 160px;
         overflow: hidden;
         text-align: center;
         transition: border-color 0.2s;
+        display: flex;
+        flex-direction: column;
     }
     .card:hover {
         border-color: #00c853;
@@ -49,6 +48,10 @@
     }
     .card-content {
         padding: 10px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     .card-content .name {
         font-weight: bold;
@@ -63,6 +66,11 @@
         margin-bottom: 10px;
         text-transform: lowercase;
     }
+    .card-content .stock {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        text-transform: lowercase;
+    }
     .submit-btn {
         background-color: #00c853;
         padding: 8px 20px;
@@ -73,6 +81,11 @@
         color: white;
         margin-bottom: 10px;
         text-transform: lowercase;
+    }
+    .submit-btn:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+        opacity: 0.6;
     }
 </style>
 
@@ -87,20 +100,26 @@
 
         <div class="cards-container">
             @foreach($suplementos as $s)
-
-            
-
-            <form action="{{ route('cliente.carrito.addSuplemento') }}" method="POST" class="card">
-                @csrf
-                <img src="{{ Storage::url($s->imagenSuplemento) }}" alt="{{ $s->nombreSuplemento }}">
-                <div class="card-content">
-                    <div class="name">{{ $s->nombreSuplemento }}</div>
-                    <div class="desc">{{ Str::limit($s->descripcionSuplemento, 50) }}</div>
-                    <div class="price">${{ number_format($s->precioSuplemento,2,',','.') }}</div>
-                    <input type="hidden" name="suplemento_id" value="{{ $s->idSuplemento }}">
-                    <button type="submit" class="submit-btn">agregar</button>
+                <div class="card">
+                    @if($s->imagenSuplemento)
+                        <img src="{{ Storage::url($s->imagenSuplemento) }}" alt="{{ $s->nombreSuplemento }}">
+                    @endif
+                    <div class="card-content">
+                        <div>
+                            <div class="name">{{ $s->nombreSuplemento }}</div>
+                            <div class="desc">{{ Str::limit($s->descripcionSuplemento, 50) }}</div>
+                            <div class="price">${{ number_format($s->precioSuplemento,2,',','.') }}</div>
+                            <div class="stock">Stock: {{ $s->stock ?? '0' }}</div>
+                        </div>
+                        <form action="{{ route('cliente.carrito.addSuplemento') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="suplemento_id" value="{{ $s->idSuplemento }}">
+                            <button type="submit" class="submit-btn" @if(($s->stock ?? 0) <= 0) disabled @endif>
+                                @if(($s->stock ?? 0) > 0) agregar @else agotado @endif
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </form>
             @endforeach
         </div>
     </div>

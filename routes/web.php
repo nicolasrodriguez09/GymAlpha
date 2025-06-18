@@ -48,7 +48,7 @@ Route::middleware(['auth', RolMiddleware::class . ':cliente'])-> group(function(
     
     Route::post('/cliente/carrito/checkout',[App\Http\Controllers\ClienteController::class,'checkout'])->name('cliente.carrito.checkout');
     Route::delete('/cliente/carrito/{key}', [App\Http\Controllers\ClienteController::class,'removeItem'])->name('cliente.carrito.remove');
-    Route::get('/cliente/factura/membresia/{id}',[App\Http\Controllers\ClienteController::class,'facturaMembresia'])->name('cliente.factura.membresia');
+    Route::get('/cliente/facturas',[App\Http\Controllers\ClienteController::class,'verFacturas'])->name('cliente.facturas');
 
 
 
