@@ -121,7 +121,7 @@
 
     <!-- Imagen -->
     <div class="image-section">
-        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos">
+        <img src="{{ asset('images/configuracion.png') }}" alt="Imagen suplementos">
     </div>
 </div>
 @endsection

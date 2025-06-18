@@ -155,7 +155,7 @@
 
     <!-- Imagen -->
     <div class="image-section">
-        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen membresías">
+        <img src="{{ asset('images/configuracion.png') }}" alt="Imagen membresías">
     </div>
 </div>
 

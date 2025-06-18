@@ -105,7 +105,7 @@
     </div>
 
     <div class="image-section">
-        <img src="{{ asset('images/ingresar.png') }}" alt="Ingresar">
+        <img src="{{ asset('images/configuracion.png') }}" alt="Ingresar">
     </div>
 </div>
 @endsection
