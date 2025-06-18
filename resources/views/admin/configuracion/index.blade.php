@@ -60,15 +60,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 
     .image-section img {
-        width: auto;
-        max-height: 90%;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
         max-width: 100%;
-        object-fit: contain;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        object-fit: cover;
+        border-radius: 0px;
+        
     }
 </style>
 
@@ -100,7 +102,7 @@
 
     <!-- Sección derecha: imagen -->
     <div class="image-section">
-        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen suplementos">
+        <img src="{{ asset('images/configuracion.png') }}" alt="Imagen suplementos">
     </div>
 </div>
 @endsection
