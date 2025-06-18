@@ -73,12 +73,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
+
     .image-section img {
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 0px;
+        
     }
 </style>
 
@@ -132,7 +137,7 @@
     </div>
 
     <div class="image-section">
-        <img src="{{ asset('images/suplemento.png') }}" alt="Imagen membresías" alt="Stock">
+        <img src="{{ asset('images/suplementospanel.png') }}" alt="Imagen membresías" alt="Stock">
     </div>
 </div>
 
