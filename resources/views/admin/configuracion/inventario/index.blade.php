@@ -82,7 +82,7 @@
 
         @php
             $acciones = [
-                ['label' => 'Ingresar cantidad', 'icon' => 'add.png', 'route' => route('admin.configuracion.inventario.ingresar')],
+                ['label' => 'Ingresar movimiento', 'icon' => 'add.png', 'route' => route('admin.configuracion.inventario.ingresar')],
                 ['label' => 'Registro de ventas', 'icon' => 'delete.png', 'route' => route('admin.configuracion.inventario.ventas')],
                 ['label' => 'Consultar stock', 'icon' => 'edit.png', 'route' => route('admin.configuracion.inventario.stock')],
             ];

@@ -128,7 +128,7 @@
                     <a href="{{ route('admin.perfil') }}">perfil</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit">log out</button>
+                        <button type="submit">cerrar sersion</button>
                     </form>
                 </div>
             </div>

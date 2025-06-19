@@ -73,17 +73,6 @@ Route::middleware(['auth', RolMiddleware::class . ':administrador'])->group(func
     Route::get('/admin/perfil/edit',[App\Http\Controllers\AdminController::class, 'editPerfil'])->name('admin.perfil.edit');
     Route::put('/admin/perfil', [App\Http\Controllers\AdminController::class, 'updatePerfil'])->name('admin.perfil.update');
 
-    Route::prefix('admin')->name('admin.')->group(function(){
-        // Perfil de admin (reusa Breeze)
-        Route::get('profile',   [App\Http\Controllers\ProfileController::class, 'edit'])
-            ->name('profile.edit');
-        Route::patch('profile', [App\Http\Controllers\ProfileController::class, 'update'])
-            ->name('profile.update');
-        Route::delete('profile',[App\Http\Controllers\ProfileController::class, 'destroy'])
-            ->name('profile.destroy');
-
-        
-    });
 
     //todas las rutas de membresia
 
