@@ -24,30 +24,44 @@ class InventarioController extends Controller
   
   public function store(Request $request)
   {
-    $data = $request->validate([
-      'suplemento_id' => 'required|exists:suplemento,idSuplemento',
-      'tipo'          => 'required|in:in,out',
-      'cantidad'      => 'required|integer|min:1',
-    ]);
+      
+      $data = $request->validate([
+          'suplemento_id' => 'required|exists:suplemento,idSuplemento',
+          'tipo'          => 'required|in:in,out',
+          'cantidad'      => 'required|integer|min:1',
+      ]);
 
-    $entrada = $data['tipo']==='in'  ? $data['cantidad'] : 0;
-    $salida  = $data['tipo']==='out' ? $data['cantidad'] : 0;
+      
+      $supl = Suplemento::findOrFail($data['suplemento_id']);
 
-    Inventario::create([
-      'cantEntrada'  => $entrada,
-      'cantSalida'   => $salida,
-      'idSuplemento' => $data['suplemento_id'],
-      'idUsuario'    => auth()->user()->idUsuario
-    ]);
+      
+      if ($data['tipo'] === 'out' && $data['cantidad'] > $supl->stock) {
+          return back()->with('error', "No puedes sacar {$data['cantidad']} unidades; el stock actual es {$supl->stock}.");
 
-    // recalcular stock
-    $supl = Suplemento::findOrFail($data['suplemento_id']);
-    $stock = Inventario::where('idSuplemento',$supl->idSuplemento)->sum('cantEntrada')
-           - Inventario::where('idSuplemento',$supl->idSuplemento)->sum('cantSalida');
-    $supl->update(['stock'=>$stock]);
+      }
 
-    return back()->with('success','Movimiento registrado.');
+      
+      $entrada = $data['tipo'] === 'in'  ? $data['cantidad'] : 0;
+      $salida  = $data['tipo'] === 'out' ? $data['cantidad'] : 0;
+
+      
+      Inventario::create([
+          'cantEntrada'  => $entrada,
+          'cantSalida'   => $salida,
+          'idSuplemento' => $data['suplemento_id'],
+          'idUsuario'    => auth()->user()->idUsuario,
+      ]);
+
+
+      $nuevoStock = Inventario::where('idSuplemento', $supl->idSuplemento)->sum('cantEntrada')
+                  - Inventario::where('idSuplemento', $supl->idSuplemento)->sum('cantSalida');
+
+      $supl->update(['stock' => $nuevoStock]);
+
+      
+      return back()->with('success', 'Movimiento registrado correctamente.');
   }
+
 
   
   public function registroVentas(Request $request)

@@ -104,7 +104,7 @@
                 <input type="text" name="q" value="{{ $q }}" placeholder="Ingrese ID">
             </div>
 
-            <button type="submit" class="submit-btn">🔍</button>
+            <button type="submit" class="submit-btn">consultar</button>
         </form>
 
         <div class="table-container">
