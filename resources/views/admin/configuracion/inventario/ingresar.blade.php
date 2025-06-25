@@ -85,7 +85,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="suplemento_id">seleccione producto de ingreso:</label>
+                <label for="suplemento_id">seleccione producto de movimiento:</label>
                 <select name="suplemento_id" id="suplemento_id" required>
                     <option value="">-- selecciona --</option>
                     @foreach($suplementos as $s)
@@ -95,7 +95,7 @@
             </div>
 
             <div class="form-group">
-                <label for="cantidad">cantidad de unidades ingresadas:</label>
+                <label for="cantidad">cantidad de unidades movidas:</label>
                 <input type="number" name="cantidad" id="cantidad" min="1" required>
             </div>
 
