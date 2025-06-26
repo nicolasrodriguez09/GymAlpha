@@ -125,6 +125,11 @@
             <div>{{ $user->telefonoUsu ?? '—' }}</div>
         </div>
 
+        <div class="field">
+            <div class="label">estado:</div>
+            <div>{{ $tieneMembresia ? 'activo' : 'inactivo' }}</div>
+        </div>
+
         <a href="{{ route('cliente.perfil.edit') }}" class="submit-btn">
             modificar información
         </a>

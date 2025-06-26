@@ -18,10 +18,13 @@ use Carbon\Carbon;
 class ClienteController extends Controller
 {
     public function perfil()
-    {
-        $user = auth()->user();
-        return view('cliente.perfil', compact('user'));
-    }
+{
+    $user = auth()->user();
+    
+    $tieneMembresia = FacturaMembresia::where('idUsuario', $user->idUsuario)->exists();
+
+    return view('cliente.perfil', compact('user', 'tieneMembresia'));
+}
 
     public function editPerfil()
     {
