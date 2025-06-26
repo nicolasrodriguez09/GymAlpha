@@ -119,7 +119,8 @@
       @php $f = $inv['factura']; @endphp
       <div class="invoice">
         <h3>factura membresía #{{ $f->idFacturaMembresia }}</h3>
-        <p><span class="label">cliente:</span> {{ $f->usuario->name }}</p>
+        <p><span class="label">cliente:</span> {{ $f->usuario->nombreUsu }} {{ $f->usuario->apellidoUsu }}</p>
+
         <p><span class="label">membresía:</span> {{ $f->membresia->nombreMembresia }}</p>
         <p><span class="label">descripción:</span> {{ $f->membresia->descripcionMembresia }}</p>
         <p><span class="label">precio:</span> ${{ number_format($f->membresia->precioMembresia,2) }}</p>
@@ -135,7 +136,8 @@
       @endphp
       <div class="invoice">
         <h3>factura suplemento #{{ $f->idFacturaSuplemento }}</h3>
-        <p><span class="label">cliente:</span> {{ $f->usuario->name }}</p>
+        <p><span class="label">cliente:</span> {{ $f->usuario->nombreUsu }} {{ $f->usuario->apellidoUsu }}</p>
+
         <p><span class="label">fecha:</span> {{ \Carbon\Carbon::parse($f->fechaCompra)->format('d/m/Y H:i') }}</p>
         <p><span class="label">forma de pago:</span> {{ $f->formaPago->nombreBanco }}
           @if($f->formaPago->numeroCuenta) - {{ $f->formaPago->numeroCuenta }} @endif
