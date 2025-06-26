@@ -40,7 +40,7 @@
         class="relative h-screen bg-cover bg-center" 
         style="background-image: url('{{ asset('images/welcome.png') }}')"
     >
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center px-4">
+        <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center px-4">
             <h1 class="text-5xl font-bold mb-4">Bienvenido a GymAlpha</h1>
             <p class="text-xl mb-6">Tu fitness, nuestra pasión. ¡Únete y alcanza tus metas hoy!</p>
             @auth
