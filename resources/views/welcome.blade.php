@@ -37,7 +37,7 @@
 
     {{-- Hero con fondo --}}
     <header 
-        class="relative h-screen bg-cover bg-center" 
+        class="relative h-96 md:h-[500px] bg-cover bg-center" 
         style="background-image: url('{{ asset('images/welcome.png') }}')"
     >
         <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center px-4">
