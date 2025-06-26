@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GymAlpha</title>
+    <title>ZonaAlpha</title>
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,7 +21,7 @@
     <nav class="flex justify-between items-center p-6">
         <div class="flex items-center">
             <img src="{{ asset('images/mancuerna.png') }}" class="h-10 w-10 mr-3" alt="GymAlpha">
-            <span class="text-2xl font-bold">GymAlpha</span>
+            <span class="text-2xl font-bold">ZonaAlpha</span>
         </div>
         <div class="space-x-4">
             @auth
@@ -41,7 +41,7 @@
         style="background-image: url('{{ asset('images/welcome.png') }}')"
     >
         <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center px-4">
-            <h1 class="text-5xl font-bold mb-4">Bienvenido a GymAlpha</h1>
+            <h1 class="text-5xl font-bold mb-4">Bienvenido a ZonaAlpha</h1>
             <p class="text-xl mb-6">Tu fitness, nuestra pasión. ¡Únete y alcanza tus metas hoy!</p>
             @auth
                 <a href="{{ route('cliente.home') }}" class="bg-green-500 hover:bg-green-600 px-8 py-3 rounded text-lg">
